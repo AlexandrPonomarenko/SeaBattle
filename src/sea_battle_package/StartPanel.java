@@ -1,6 +1,7 @@
 package sea_battle_package;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,9 +13,14 @@ public class StartPanel extends JPanel {
     private int realWidth;
     private int realHeight;
     private boolean flagColor;
+
+    EventListenerList eventListenerList;
+
     public StartPanel(int w, int h){
         setPreferredSize(new Dimension(w,h));
+        eventListenerList = new EventListenerList();
         addMouseListener();
+        addMouseClick();
     }
 
     public void paint(Graphics g) {
@@ -78,4 +84,38 @@ public class StartPanel extends JPanel {
         });
     }
 
+    private void addMouseClick(){
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                super.mouseClicked(e);
+                if(checkArea(e.getX(), e.getY())){
+                    fireLoad(new LoadEventListenerPanel(e));
+                }
+            }
+        });
+    }
+
+
+    public void addMyEventListener(EventListenerLoadPanel listener)
+    {
+        listenerList.add(EventListenerLoadPanel.class, listener);
+    }
+
+    public void removeMyEventListener(EventListenerLoadPanel listener)
+    {
+        listenerList.remove(EventListenerLoadPanel.class, listener);
+    }
+
+    private void fireLoad(LoadEventListenerPanel evt)
+    {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2)
+        {
+            if (listeners[i] == EventListenerLoadPanel.class)
+            {
+                ((EventListenerLoadPanel) listeners[i + 1]).click(evt);
+            }
+        }
+    }
 }
