@@ -35,6 +35,7 @@ public class PanelSetShip extends JPanel {
     private int one = 0;
     private int two = 0;
     private int three = 0;
+    private int four = 0;
 
     EventListenerList eventListenerList;
 
@@ -73,30 +74,24 @@ public class PanelSetShip extends JPanel {
         width = w;
         height = h;
         recWidth = (width - left - right) / 10;
-//        recWidth = ((width / 2) - left - right) / 10;
         recHeight = (height - top - bottom) / 10;
     }
 
     private void drawMouseCell(Graphics g) {
         if(mainFlag) {
-            System.out.println(mainFlag + " ZASHOL  v drawMouseCell");
             if (flag) {
                 if (flagColor) {
                     if (stateShipVerOrHor == 1) {
                         g.fillRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth * stateShip, recHeight);
-//                graphics2D.drawRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth * stateShip, recHeight);
                     } else {
                         g.fillRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth, recHeight * stateShip);
-//                    graphics2D.drawRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth, recHeight * stateShip);
                     }
                 } else {
                     g.setColor(Color.RED);
                     if (stateShipVerOrHor == 1) {
                         g.fillRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth * stateShip, recHeight);
-//                graphics2D.drawRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth * stateShip, recHeight);
                     } else {
                         g.fillRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth, recHeight * stateShip);
-//                    graphics2D.drawRect(mouseX - (recWidth / 2), mouseY - (recHeight / 2), recWidth, recHeight * stateShip);
                     }
                 }
             }
@@ -110,7 +105,6 @@ public class PanelSetShip extends JPanel {
 
         boolean flagX = false;
         boolean flagY = false;
-//        setCor(left, (width / 2) - right, (width / 2) - left - right, e.getX(),e.getY());
         System.out.println("x " + x + " " + startPoz + " " + length);
         if((x >= startPoz && x <= border)  && (y >= top && y <= height - bottom)) {
 
@@ -153,7 +147,6 @@ public class PanelSetShip extends JPanel {
             for (int j = 0; j < arrayField[i].length; j++) {
                 if (arrayField[i][j] == 1) {
                     g.fillRect(i * recWidth + right, j * recHeight + top, recWidth, recHeight);
-//                    graphics2D.drawRect(i * recWidth + right, j * recHeight + top, recWidth, recHeight);
                 }
             }
         }
@@ -165,15 +158,11 @@ public class PanelSetShip extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //super.mouseClicked(e);
-                System.out.println("CLICK");
-                cheekShip();
                 if(mainFlag) {
-                    System.out.println(mainFlag + " ZASHOL v Mouse Click");
                     if (flagColor) {
                     setCor(left, width - right, width - left - right, e.getX(), e.getY());
                     countShip();
                     repaint();
-//                    fireMyEvent(new MyEventObject(stateShip));
                 }
                 }
             }
@@ -189,13 +178,11 @@ public class PanelSetShip extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 flag = true;
-                System.out.println("ON");
                 repaint();
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 flag = false;
-                System.out.println("EXIT");
                 repaint();
             }
         });
@@ -214,7 +201,6 @@ public class PanelSetShip extends JPanel {
             public void mouseMoved(MouseEvent e) {
                 //super.mouseMoved(e);
                 if(mainFlag) {
-                    System.out.println(mainFlag + " ZASHOL v Mouse moved");
                 if (flag) {
                     mouseX = e.getX();
                     mouseY = e.getY();
@@ -223,9 +209,6 @@ public class PanelSetShip extends JPanel {
                     } else {
                         flagColor = false;
                     }
-//                    checkCell(left, width - right, width - left - right, e.getX(),e.getY());
-//                    System.out.println(mouseX + " ======= " + mouseY);
-//                        repaint();
                     repaint();
                 }
                 }
@@ -235,46 +218,75 @@ public class PanelSetShip extends JPanel {
 
     public void setButtonState(String state) {
         buttonState = state;
-        System.out.println(buttonState + getClass());
-//        if(mainFlag) {
         getNameStateButton(buttonState);
-//        }
+    }
+
+    private boolean isFinish() {
+        return one >= 4 && two >= 3 && three >= 2 && four >= 1;
+    }
+
+    private void setNextSheep(int lastState) {
+        if (isFinish()) {
+            stateShip = 0;
+        } else {
+            switch (lastState) {
+                case 1:
+                    if (two >= 3) {
+                        setNextSheep(2);
+                    } else {
+                        stateShip = 2;
+                    }
+                    break;
+                case 2:
+                    if (three >= 2) {
+                        setNextSheep(3);
+                    } else {
+                        stateShip = 3;
+                    }
+                    break;
+                case 3:
+                    if (four >= 1) {
+                        setNextSheep(4);
+                    } else {
+                        stateShip = 4;
+                    }
+                    break;
+                case 4:
+                    if (one >= 4) {
+                        setNextSheep(1);
+                    } else {
+                        stateShip = 1;
+                    }
+                    break;
+            }
+        }
     }
 
     private void countShip() {
         if(stateShip == 1) {
             one++;
-            System.out.println("ONE " + one);
             if(one > 3){
                 fireMyEvent(new MyEventObject(stateShip));
-                stateShip = 2;
+                setNextSheep(stateShip);
             }
         }else if(stateShip == 2) {
             two++;
-            System.out.println("TWO " + two);
             if(two > 2){
                 fireMyEvent(new MyEventObject(stateShip));
-                stateShip = 3;
+                setNextSheep(stateShip);
             }
         }else if(stateShip == 3) {
             three++;
-            System.out.println("THREE " + three);
             if(three > 1){
                 fireMyEvent(new MyEventObject(stateShip));
-                stateShip = 4;
+                setNextSheep(stateShip);
             }
         }else if (stateShip == 4){
+            four++;
             fireMyEvent(new MyEventObject(stateShip));
-            stateShip = 1;
+            setNextSheep(stateShip);
         }
-    }
-
-    private void cheekShip(){
-        if(one == 4 && two == 3 && three == 2 && stateShip == 1){
-            mainFlag = false;
-            OverwriteVariables();
-        }
-        mainFlag = true;
+        mainFlag = !isFinish();
     }
 
     public void getNameStateButton(String name) {
@@ -293,6 +305,7 @@ public class PanelSetShip extends JPanel {
         }else if(name.equals("New")) {
             clearArrayField();
             turnOnAllMyEvent(new MyEventObject());
+            mainFlag = true;
         }else if(name.equals("GO")) {
             goMyEvent(new MyEventObject(arrayField));
         }
@@ -308,6 +321,7 @@ public class PanelSetShip extends JPanel {
         one = 0;
         two = 0;
         three = 0;
+        four = 0;
     }
     private boolean checkCell(int startPoz, int border, int length, int corX, int corY) {
         int x = corX;

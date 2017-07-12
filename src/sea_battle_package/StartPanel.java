@@ -54,8 +54,6 @@ public class StartPanel extends JPanel {
         }else{g.setColor(Color.WHITE);}
         Font font = new Font("San Francisco", Font.BOLD | Font.ITALIC, 55);
         int c = font.getSize();
-//        System.out.println(c);
-//        g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("Start", realWidth / 2 - c, realHeight / 2 + 25);
     }
