@@ -10,4 +10,5 @@ public interface MyEventListener extends EventListener {
     public void getArray(MyEventObject eventObject);
     public void turnOn(MyEventObject eventObject);
 
+
 }

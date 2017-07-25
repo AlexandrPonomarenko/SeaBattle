@@ -20,7 +20,7 @@ public class SecondGamePanel extends JPanel {
 
     private boolean flagRec;
     private boolean flag = false;
-    private boolean drawFlag = true;
+    private boolean drawFlag = false;
 
     private int TOP = 20;
     private int LEFT = 40;
@@ -144,10 +144,11 @@ public class SecondGamePanel extends JPanel {
     private void drawShot(Graphics g){
         System.out.println("++++++++++++++++++++++++++++++++++++++++++___--------------------------------------------");
         g.setColor(Color.BLUE);
-        if(tempCorX > 0 && tempCorY > 0){
+        if(tempCorX >= 0 && tempCorY >= 0){
             if (drawFlag) {
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++");
-                g.fillOval(tempCorX * (recWidth / 2) + RIGHT + (width / 2), tempCorY * (recHeight) / 2 + TOP, recWidth / 3, recWidth / 3);
+                g.fillOval(tempCorX * recWidth + RIGHT + (width / 2) + recWidth / 2 - (recWidth / 3) / 2,
+                        tempCorY * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
             } else {
                 g.drawLine(tempCorX, tempCorY,tempCorX + recWidth, tempCorY + recHeight );
                 g.drawLine(tempCorX + recWidth, tempCorY + recHeight, tempCorX, tempCorY);

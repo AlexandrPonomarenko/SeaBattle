@@ -15,6 +15,8 @@ public class Loader extends JFrame{
     private PanelSetShip panelSetShip;
     private FirstGamePanel fgp;
     private SecondGamePanel sgp;
+    private ConectionPanel cp;
+    private ConnectionTablePanel ctp;
     private boolean flag;
 
 
@@ -79,8 +81,10 @@ public class Loader extends JFrame{
 
                     @Override
                     public void getArray(MyEventObject eventObject) {
-                        setFirstGamePanelAndSecondGamePanel();
-                        sgp.setShip(eventObject.getArray());
+                        setConnectionPanelAndConnectionTablePanel();
+                        cp.setShip(eventObject.getArray());
+//                        setFirstGamePanelAndSecondGamePanel();
+//                        sgp.setShip(eventObject.getArray());
                     }
 
                     @Override
@@ -106,12 +110,28 @@ public class Loader extends JFrame{
                         panelButton.allTurnOn();
                     }
                 });
+
+//                cp.addMyEventListener(new MyEventListener() {
+//                    @Override
+//                    public void clickButton(MyEventObject eventObject) {
+//                        setConnectionPanelAndConnectionTablePanel();
+//                    }
+//
+//                    @Override
+//                    public void getArray(MyEventObject eventObject) {
+//
+//                    }
+//
+//                    @Override
+//                    public void turnOn(MyEventObject eventObject) {
+//
+//                    }
+//                });
             }
         });
     }
 
     private void setFirstGamePanelAndSecondGamePanel(){
-
         clearMainPanel();
         setSizeFrame(width, height);
         fgp = new FirstGamePanel(width, height / 100 * 20);
@@ -121,6 +141,23 @@ public class Loader extends JFrame{
         mainPanel.add(fgp, BorderLayout.NORTH);
         mainPanel.add(sgp, BorderLayout.CENTER);
 
+    }
+
+    private void setConnectionPanelAndConnectionTablePanel(){
+        clearMainPanel();
+        setSizeFrame(width / 2, height / 2);
+        cp = new ConectionPanel((((width / 100) * 60) / 100) * 10, getHeight());
+        ctp = new ConnectionTablePanel(width - (((width / 100) * 60) / 100) * 10, getHeight());
+        add(mainPanel,BorderLayout.CENTER);
+//        mainPanel.setLayout(new BorderLayout());
+//        mainPanel.add(cp, BorderLayout.NORTH);
+//        mainPanel.add(ctp, BorderLayout.CENTER);
+
+        mainPanel.setLayout(new GridBagLayout());
+        mainPanel.add(cp, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.NORTH, GridBagConstraints.VERTICAL,
+                new Insets(0,0,0,0), 0,0));
+        mainPanel.add(ctp, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.NORTHWEST, GridBagConstraints.BOTH,
+                new Insets(0,0,0,0), 0,0));
     }
 
     private void clearMainPanel(){
