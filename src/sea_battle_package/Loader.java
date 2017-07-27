@@ -83,7 +83,8 @@ public class Loader extends JFrame{
                     public void getArray(MyEventObject eventObject) {
                         setConnectionPanelAndConnectionTablePanel();
                         cp.setShip(eventObject.getArray());
-//                        setFirstGamePanelAndSecondGamePanel();
+                        setListener();
+//                        setFirstGamePanelAndSecond GamePanel();
 //                        sgp.setShip(eventObject.getArray());
                     }
 
@@ -111,26 +112,28 @@ public class Loader extends JFrame{
                     }
                 });
 
-//                cp.addMyEventListener(new MyEventListener() {
-//                    @Override
-//                    public void clickButton(MyEventObject eventObject) {
-//                        setConnectionPanelAndConnectionTablePanel();
-//                    }
-//
-//                    @Override
-//                    public void getArray(MyEventObject eventObject) {
-//
-//                    }
-//
-//                    @Override
-//                    public void turnOn(MyEventObject eventObject) {
-//
-//                    }
-//                });
             }
         });
     }
 
+    private void setListener(){
+        cp.addMyEventListener(new MyEventListener() {
+            @Override
+            public void clickButton(MyEventObject eventObject) {
+                        setFirstGamePanelAndSecondGamePanel();
+            }
+
+            @Override
+            public void getArray(MyEventObject eventObject) {
+                        sgp.setShip(eventObject.getArray());
+            }
+
+            @Override
+            public void turnOn(MyEventObject eventObject) {
+
+            }
+        });
+    }
     private void setFirstGamePanelAndSecondGamePanel(){
         clearMainPanel();
         setSizeFrame(width, height);

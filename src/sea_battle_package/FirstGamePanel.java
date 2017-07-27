@@ -15,11 +15,11 @@ public class FirstGamePanel extends JPanel  {
     private GridBagLayout gbl;
     private GridBagConstraints gbc;
     private Polygon poligon;
-    Timer timer;
-    int [] xCor;
-    int [] yCor;
-    int timerSpeed = 1000;
-    int startNumberTimer = 30;
+    private Timer timer;
+    private int [] xCor;
+    private int [] yCor;
+    private int timerSpeed = 1000;
+    private int startNumberTimer = 30;
 
     public FirstGamePanel(int w, int h){
         setPreferredSize(new Dimension(w,h));
@@ -59,11 +59,6 @@ public class FirstGamePanel extends JPanel  {
         drawString(g, getWidth() / 100 * 90, getHeight(), "NoName", "bottom");
         drawNumber(g, getWidth(), 0, startNumberTimer);
     }
-
-//    private void repaintComponent(Graphics graphics){
-//        status.update(graphics);
-//        time.update(graphics);
-//    }
 
     private void drawString(Graphics g, int x, int y, String text, String state){
         g.setColor(Color.black);

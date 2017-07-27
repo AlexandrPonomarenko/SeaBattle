@@ -30,6 +30,7 @@ public class ConnectionTablePanel extends JPanel {
         tableUser = new JTable(data, headers);
         scrollPane = new JScrollPane(tableUser);
 //        tableUser.setFillsViewportHeight(true);
+        add(tableUser.getTableHeader(), BorderLayout.NORTH);
         add(tableUser,BorderLayout.CENTER);
 //        add(scrollPane, BorderLayout.CENTER);
     }

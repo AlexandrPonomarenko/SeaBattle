@@ -1,10 +1,11 @@
 package sea_battle_package;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * Created by Alexandr on 24.07.2017.
@@ -15,31 +16,42 @@ public class ConectionPanel extends JPanel{
     private JTextField textName;
     private JButton create;
     private JButton connect;
-    private EventListenerList eventListenerList;
+    public EventListenerList eventListenerList;
     private int array[][];
+
+    private int realWidth;
+    private int realHeight;
+    private boolean flagColor;
 
     public ConectionPanel(int x, int y){
         setPreferredSize(new Dimension(x, y));
         setLayout(new GridBagLayout());
 
+
         eventListenerList = new EventListenerList();
 
-        labelName = new JLabel("Name:");
-        add(labelName, new GridBagConstraints(0,0,1,1,0.5,0.5,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
-                new Insets(0,0,0,0),0,0));
+//        labelName = new JLabel("Name:");
+//        add(labelName, new GridBagConstraints(0,0,1,1,0.5,0.5,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
+//                new Insets(0,0,0,0),0,0));
 
         textName = new JTextField(10);
-        add(textName, new GridBagConstraints(1,0,1,1,0.5,0.5,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
+        textName.setText("Your name");
+        add(textName, new GridBagConstraints(0,0,1,1,1,0,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
                 new Insets(0,0,0,0),0,0));
 
         setButtonPanel(create,"Create", 0);
         setButtonPanel(connect,"Connect", 1);
 
-//        addActionListenerButton(create);
-//        addActionListenerButton(connect);
+        addFocusListener(textName);
+
     }
 
-
+//    public void paint(Graphics g){
+//        setRealWidthAndHeight(getWidth(),getHeight());
+////        g.fillRect(0,0,getWidth(),getHeight());
+////        drawStringStart(g, "Create");
+//
+//    }
 
     private void setButtonPanel(JButton button, String name, int weighty) {
         button = new JButton(name);
@@ -55,11 +67,42 @@ public class ConectionPanel extends JPanel{
         return true;
     }
 
+//    private void drawStringStart(Graphics g, String nameButton) {
+//        if(flagColor) {
+//            g.setColor(new Color(139,0,0));
+//        }else{g.setColor(Color.WHITE);}
+//        Font font = new Font("San Francisco", Font.BOLD | Font.ITALIC, 12);
+//        int c = font.getSize();
+//        g.setFont(font);
+//        g.drawString(nameButton, realWidth, 20);
+//    }
+//
+//    private void setRealWidthAndHeight(int w, int h){
+//        realWidth = w;
+//        realHeight = h;
+//    }
+
     private void addActionListenerButton(JButton button){
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(e.getActionCommand().equals("Create")){
+                    fireMyEvent(new MyEventObject());
+                    goMyEvent(new MyEventObject(array));
+                }else{
+                    fireMyEvent(new MyEventObject());
+                    goMyEvent(new MyEventObject(array));
+                }
+            }
+        });
+    }
 
+    private void addFocusListener(JTextField tf){
+        tf.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                tf.setText("");
             }
         });
     }
@@ -81,6 +124,15 @@ public class ConectionPanel extends JPanel{
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == MyEventListener.class) {
                 ((MyEventListener) listeners[i + 1]).clickButton(evt);
+            }
+        }
+    }
+
+    private void goMyEvent(MyEventObject evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == MyEventListener.class) {
+                ((MyEventListener) listeners[i + 1]).getArray(evt);
             }
         }
     }

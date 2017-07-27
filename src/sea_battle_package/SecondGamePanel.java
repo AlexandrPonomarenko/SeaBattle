@@ -1,7 +1,11 @@
 package sea_battle_package;
 
+import com.sun.awt.AWTUtilities;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,6 +21,11 @@ public class SecondGamePanel extends JPanel {
     private int tempCorY = 0;
     private int [][] arrayField;
     private int [][] arrayFieldTwo;
+    private Timer timerWait;
+    private int startNumberTimer = 0;
+    private String create = "Waiting for an opponent to connect";
+    private String afterStart = "You have 30 seconds to make a move. You go first!";
+    private String connect = "You have 30 seconds to make a move. You go second!";
 
     private boolean flagRec;
     private boolean flag = false;
@@ -33,6 +42,8 @@ public class SecondGamePanel extends JPanel {
         arrayField = new int[10][10];
         arrayFieldTwo = new int[10][10];
         addMouseMotionListener();
+        setTimer();
+        timerStart();
     }
 
     private void setCorPanel(int w, int h) {
@@ -55,6 +66,8 @@ public class SecondGamePanel extends JPanel {
         drawCell(g);
         updateGrid(g);
         drawShot(g);
+        drawFatLine(g);
+        drawStartText(g, create);
     }
 
     private void drawSinglWeb(Graphics g, int stepX, int stepY, int top, int left) {
@@ -156,6 +169,19 @@ public class SecondGamePanel extends JPanel {
         }
     }
 
+    private void drawFatLine(Graphics g){
+        g.setColor(new Color(128, 0, 128, 128));
+        g.fillRect(0,100,width,150);
+
+    }
+    private void drawStartText(Graphics g, String string) {
+        g.setColor(new Color(240, 128, 128, 128));
+        Font font = new Font("San Francisco", Font.BOLD | Font.ITALIC, 30);
+        int c = font.getSize();
+        g.setFont(font);
+        g.drawString(string + " :  " + startNumberTimer, (width / 2 - (width / 2 / 2)) - c, 175);
+    }
+
     public void setFlag(boolean flag)
     {
         this.flag = flag;
@@ -177,4 +203,24 @@ public class SecondGamePanel extends JPanel {
             }
         });
     }
+
+    private void setTimer(){
+        timerWait = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+                System.out.println("TIMER ____________+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                if(startNumberTimer < 180){
+                    startNumberTimer++;
+                }else{startNumberTimer = 0;}
+            }
+        });
+    }
+    private void timerStart(){
+        timerWait.start();
+    }
+    private void timerStop(){
+        timerWait.stop();
+    }
+
 }
