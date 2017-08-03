@@ -37,7 +37,7 @@ public class PanelSetShip extends JPanel {
     private int three = 0;
     private int four = 0;
 
-    EventListenerList eventListenerList;
+    private EventListenerList eventListenerList;
 
     public PanelSetShip(int w, int h){
         setPreferredSize(new Dimension(w,h));
@@ -308,6 +308,7 @@ public class PanelSetShip extends JPanel {
             mainFlag = true;
         }else if(name.equals("GO")) {
             goMyEvent(new MyEventObject(arrayField));
+            startClient(new EventObjectClient());
         }
     }
 
@@ -541,6 +542,11 @@ public class PanelSetShip extends JPanel {
         listenerList.add(MyEventListener.class, listener);
     }
 
+    public void addEventListenerObjectClient(EventListenerObjectClient listener)
+    {
+        listenerList.add(EventListenerObjectClient.class, listener);
+    }
+
     public void removeMyEventListener(MyEventListener listener) {
         listenerList.remove(MyEventListener.class, listener);
     }
@@ -568,6 +574,15 @@ public class PanelSetShip extends JPanel {
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == MyEventListener.class) {
                 ((MyEventListener) listeners[i + 1]).turnOn(evt);
+            }
+        }
+    }
+
+    private void startClient(EventObjectClient evt){
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerObjectClient.class) {
+                ((EventListenerObjectClient) listeners[i + 1]).startClient(evt);
             }
         }
     }

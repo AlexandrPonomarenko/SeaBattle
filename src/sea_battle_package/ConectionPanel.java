@@ -19,9 +19,6 @@ public class ConectionPanel extends JPanel{
     public EventListenerList eventListenerList;
     private int array[][];
 
-    private int realWidth;
-    private int realHeight;
-    private boolean flagColor;
 
     public ConectionPanel(int x, int y){
         setPreferredSize(new Dimension(x, y));
@@ -46,13 +43,6 @@ public class ConectionPanel extends JPanel{
 
     }
 
-//    public void paint(Graphics g){
-//        setRealWidthAndHeight(getWidth(),getHeight());
-////        g.fillRect(0,0,getWidth(),getHeight());
-////        drawStringStart(g, "Create");
-//
-//    }
-
     private void setButtonPanel(JButton button, String name, int weighty) {
         button = new JButton(name);
         add(button, new GridBagConstraints(0,GridBagConstraints.RELATIVE,1,1,0,weighty,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
@@ -66,21 +56,6 @@ public class ConectionPanel extends JPanel{
         }
         return true;
     }
-
-//    private void drawStringStart(Graphics g, String nameButton) {
-//        if(flagColor) {
-//            g.setColor(new Color(139,0,0));
-//        }else{g.setColor(Color.WHITE);}
-//        Font font = new Font("San Francisco", Font.BOLD | Font.ITALIC, 12);
-//        int c = font.getSize();
-//        g.setFont(font);
-//        g.drawString(nameButton, realWidth, 20);
-//    }
-//
-//    private void setRealWidthAndHeight(int w, int h){
-//        realWidth = w;
-//        realHeight = h;
-//    }
 
     private void addActionListenerButton(JButton button){
         button.addActionListener(new ActionListener() {

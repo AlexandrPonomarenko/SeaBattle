@@ -17,6 +17,7 @@ public class Loader extends JFrame{
     private SecondGamePanel sgp;
     private ConectionPanel cp;
     private ConnectionTablePanel ctp;
+    private Client client;
     private boolean flag;
 
 
@@ -31,6 +32,7 @@ public class Loader extends JFrame{
 
         setStartPanel();
         setPanelButtonAndPanelShip();
+        client = new Client();
 //        setFirstGamePanelAndSecondGamePanel();
     }
 
@@ -112,6 +114,27 @@ public class Loader extends JFrame{
                     }
                 });
 
+                panelSetShip.addEventListenerObjectClient(new EventListenerObjectClient() {
+                    @Override
+                    public void sendArrayCoordinatesShips(EventObjectClient eventObjectClient) {
+
+                    }
+
+                    @Override
+                    public void getDataUser(EventObjectClient eventObjectClient) {
+
+                    }
+
+                    @Override
+                    public void sendCoordinatesShot(EventObjectClient eventObjectClient) {
+
+                    }
+
+                    @Override
+                    public void startClient(EventObjectClient eventObjectClient) {
+                        client.connectServer();
+                    }
+                });
             }
         });
     }
@@ -133,6 +156,10 @@ public class Loader extends JFrame{
 
             }
         });
+    }
+
+    private void setListenerClient(){
+        client.
     }
     private void setFirstGamePanelAndSecondGamePanel(){
         clearMainPanel();

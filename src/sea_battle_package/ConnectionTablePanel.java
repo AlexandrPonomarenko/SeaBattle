@@ -22,7 +22,6 @@ public class ConnectionTablePanel extends JPanel {
         headers = new String[]{"Name", "CreateGame", "IP"};
         data = new String[][]{{"Alex" , "23.14.17.14:35", "192.102.20.2"},{"Oleg" , "23.14.17,16:35", "202.102.20.2"},
                 {"Sergey" , "23.14.17,15:35", "144.102.20.2"} };
-
         addTable();
     }
 

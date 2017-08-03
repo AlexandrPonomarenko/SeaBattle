@@ -66,8 +66,8 @@ public class SecondGamePanel extends JPanel {
         drawCell(g);
         updateGrid(g);
         drawShot(g);
-        drawFatLine(g);
-        drawStartText(g, create);
+//        drawFatLine(g);
+//        drawStartText(g, create);
     }
 
     private void drawSinglWeb(Graphics g, int stepX, int stepY, int top, int left) {
