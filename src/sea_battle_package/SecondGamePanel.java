@@ -25,6 +25,7 @@ public class SecondGamePanel extends JPanel {
     private int startNumberTimer = 0;
     private String create = "Waiting for an opponent to connect";
     private String afterStart = "You have 30 seconds to make a move. You go first!";
+    private String ready = "The game will start";
     private String connect = "You have 30 seconds to make a move. You go second!";
 
     private boolean flagRec;

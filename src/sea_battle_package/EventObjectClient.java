@@ -10,6 +10,7 @@ public class EventObjectClient extends EventObject {
     private int [][] arrayShip;
     private String[][] arrayData;
     private String coordinatesShot;
+    private String command;
 
     public  EventObjectClient(Object object, String coordinatesShot) {
         super(object);
@@ -25,9 +26,28 @@ public class EventObjectClient extends EventObject {
         arrayData = array;
     }
 
+    public  EventObjectClient(String com) {
+        super(new EventObject(new Object()));
+        command = com;
+    }
+
     public  EventObjectClient() {
         super(new EventObject(new Object()));
     }
 
-//    private
+    public String [][] getDataUser(){
+        return arrayData;
+    }
+
+    public String  getCoordinatesShot(){
+        return coordinatesShot;
+    }
+
+    public int [][] getArrayShip(){
+        return arrayShip;
+    }
+
+    public String getCommandConnection(){
+        return command;
+    }
 }

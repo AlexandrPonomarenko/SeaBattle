@@ -79,7 +79,7 @@ public class Client {
         }
     }
 
-    private void sendMassage(String message) {
+    public void sendMassage(String message) {
         try {
             writer.println(username + ":" + message + ":" + "Chat");
             writer.flush();
@@ -89,7 +89,17 @@ public class Client {
         }
     }
 
-    private void sendArrayShip(int [][] arr){
+    public void sendMassageCommand(String message, String commandWords) {
+        try {
+            writer.println(username + ":" + message + ":" + commandWords);
+            writer.flush();
+        }
+        catch (Exception ex) {
+            System.out.println("sendMassage" + "Message was not sent.");
+        }
+    }
+
+    public void sendArrayShip(int [][] arr){
 //                oos = new ObjectOutputStream(sock.getOutputStream());
         try {
             oos.writeObject(arr);
@@ -202,7 +212,9 @@ public class Client {
                         writeUsers();
                         users.clear();
                     }else if((ois.readObject()) != null){
-                        getArray(dataUser);
+                        System.out.println("Принял массив юзеров!!!");
+                        fireMyEvent(new EventObjectClient(dataUser));
+//                        getArray(dataUser);
                     }
                 }
             }catch(Exception ex) {

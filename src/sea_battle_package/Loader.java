@@ -86,6 +86,7 @@ public class Loader extends JFrame{
                         setConnectionPanelAndConnectionTablePanel();
                         cp.setShip(eventObject.getArray());
                         setListener();
+                        setListenerClient();
 //                        setFirstGamePanelAndSecond GamePanel();
 //                        sgp.setShip(eventObject.getArray());
                     }
@@ -134,6 +135,9 @@ public class Loader extends JFrame{
                     public void startClient(EventObjectClient eventObjectClient) {
                         client.connectServer();
                     }
+
+                    @Override
+                    public  void sendCommandConnection(EventObjectClient eventObjectClient){}
                 });
             }
         });
@@ -156,10 +160,60 @@ public class Loader extends JFrame{
 
             }
         });
+
+        cp.addEventListenerObjectClient(new EventListenerObjectClient() {
+            @Override
+            public void sendArrayCoordinatesShips(EventObjectClient eventObjectClient) {
+                client.sendArrayShip(eventObjectClient.getArrayShip());
+            }
+
+            @Override
+            public void getDataUser(EventObjectClient eventObjectClient) {
+
+            }
+
+            @Override
+            public void sendCoordinatesShot(EventObjectClient eventObjectClient) {
+//                client.sendMassage(eventObjectClient.getCommandConnection(),eventObjectClient.getCommandConnection());
+            }
+
+            @Override
+            public void startClient(EventObjectClient eventObjectClient) {
+
+            }
+
+            @Override
+            public void sendCommandConnection(EventObjectClient eventObjectClient) {
+                client.sendMassageCommand(eventObjectClient.getCommandConnection(),eventObjectClient.getCommandConnection());
+            }
+        });
     }
 
     private void setListenerClient(){
-        client.
+        client.addMyEventListener(new EventListenerObjectClient() {
+            @Override
+            public void sendArrayCoordinatesShips(EventObjectClient eventObjectClient) {
+
+            }
+
+            @Override
+            public void getDataUser(EventObjectClient eventObjectClient) {
+                ctp.setDataUser(eventObjectClient.getDataUser());
+            }
+
+            @Override
+            public void sendCoordinatesShot(EventObjectClient eventObjectClient) {
+
+            }
+
+            @Override
+            public void startClient(EventObjectClient eventObjectClient) {
+
+            }
+
+            @Override
+            public  void sendCommandConnection(EventObjectClient eventObjectClient){}
+        });
     }
     private void setFirstGamePanelAndSecondGamePanel(){
         clearMainPanel();

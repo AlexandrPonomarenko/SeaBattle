@@ -64,9 +64,14 @@ public class ConectionPanel extends JPanel{
                 if(e.getActionCommand().equals("Create")){
                     fireMyEvent(new MyEventObject());
                     goMyEvent(new MyEventObject(array));
+                    sendConnection(new EventObjectClient(e.getActionCommand()));
+                    sendArrayShip(new EventObjectClient(array));
+
                 }else{
                     fireMyEvent(new MyEventObject());
                     goMyEvent(new MyEventObject(array));
+                    sendConnection(new EventObjectClient(e.getActionCommand()));
+                    sendArrayShip(new EventObjectClient(array));
                 }
             }
         });
@@ -90,6 +95,10 @@ public class ConectionPanel extends JPanel{
         listenerList.add(MyEventListener.class, listener);
     }
 
+    public void addEventListenerObjectClient(EventListenerObjectClient listener) {
+        listenerList.add(EventListenerObjectClient.class, listener);
+    }
+
     public void removeMyEventListener(MyEventListener listener) {
         listenerList.remove(MyEventListener.class, listener);
     }
@@ -108,6 +117,24 @@ public class ConectionPanel extends JPanel{
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == MyEventListener.class) {
                 ((MyEventListener) listeners[i + 1]).getArray(evt);
+            }
+        }
+    }
+
+    private void sendConnection(EventObjectClient evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerObjectClient.class) {
+                ((EventListenerObjectClient) listeners[i + 1]).sendCoordinatesShot(evt);
+            }
+        }
+    }
+
+    private void sendArrayShip(EventObjectClient evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerObjectClient.class) {
+                ((EventListenerObjectClient) listeners[i + 1]).sendArrayCoordinatesShips(evt);
             }
         }
     }

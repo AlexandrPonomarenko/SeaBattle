@@ -10,4 +10,5 @@ public interface EventListenerObjectClient extends EventListener {
     public void getDataUser(EventObjectClient eventObjectClient);
     public void sendCoordinatesShot(EventObjectClient eventObjectClient);
     public void startClient(EventObjectClient eventObjectClient);
+    public void sendCommandConnection(EventObjectClient eventObjectClient);
 }
