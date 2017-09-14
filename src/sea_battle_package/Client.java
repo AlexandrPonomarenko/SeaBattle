@@ -104,6 +104,7 @@ public class Client {
         try {
             oos.writeObject(arr);
             oos.flush();
+//            oos.close();
         } catch (Exception ex) {
             System.out.println("НЕ УДАЛОСЬ ОТПРАВИТЬ МАССИВ");
         }
@@ -152,6 +153,8 @@ public class Client {
                 writer = new PrintWriter(sock.getOutputStream());
                 writer.println(username + ":has connected.:Connect");
                 writer.flush();
+//                writer.close();
+                createStreamObject();
                 isConnected = true;
             } catch (Exception ex) {
                 System.out.println("Cannot Connect! Try Again. \n");
@@ -159,7 +162,7 @@ public class Client {
             }
 
             StartThread();
-            createStreamObject();
+//            createStreamObject();
         }
     }
 
@@ -214,7 +217,8 @@ public class Client {
                     }else if((ois.readObject()) != null){
                         System.out.println("Принял массив юзеров!!!");
                         fireMyEvent(new EventObjectClient(dataUser));
-//                        getArray(dataUser);
+                        getArray(dataUser);
+                        ois.close();
                     }
                 }
             }catch(Exception ex) {

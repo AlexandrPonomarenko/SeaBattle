@@ -307,7 +307,7 @@ public class PanelSetShip extends JPanel {
             turnOnAllMyEvent(new MyEventObject());
             mainFlag = true;
         }else if(name.equals("GO")) {
-            goMyEvent(new MyEventObject(arrayField));
+            //goMyEvent(new MyEventObject(arrayField));
             startClient(new EventObjectClient());
         }
     }

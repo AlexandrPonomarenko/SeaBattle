@@ -2,6 +2,9 @@ package sea_battle_package;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
 import java.awt.*;
 
 /**
@@ -15,6 +18,8 @@ public class ConnectionTablePanel extends JPanel {
     private JScrollPane scrollPane;
     private EventListenerList eventListenerList;
     private String [][] dataUser;
+    private ListSelectionModel selModel;
+    private String changeName;
 
     public ConnectionTablePanel(int x, int y){
         setPreferredSize(new Dimension(x, y));
@@ -24,6 +29,7 @@ public class ConnectionTablePanel extends JPanel {
 //        data = new String[][]{{"Alex" , "23.14.17.14:35", "192.102.20.2"},{"Oleg" , "23.14.17,16:35", "202.102.20.2"},
 //                {"Sergey" , "23.14.17,15:35", "144.102.20.2"} };
         addTable();
+        changeCell();
     }
 
     private void addTable(){
@@ -35,8 +41,35 @@ public class ConnectionTablePanel extends JPanel {
 //        add(scrollPane, BorderLayout.CENTER);
     }
 
+    private void changeCell(){
+        selModel = tableUser.getSelectionModel();
+        selModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int selectedRows = tableUser.getSelectedRow();
+                TableModel model = tableUser.getModel();
+                Object value = model.getValueAt(selectedRows, 0);
+                changeName += value;
+                changeNameTable(new EventObjectClient(e, changeName));
+            }
+        });
+    }
+
     public void setDataUser(String[][] dataUserArray){
         dataUser = dataUserArray;
     }
 
+
+    public void addEventListenerObjectClient(EventListenerObjectClient listener) {
+        eventListenerList.add(EventListenerObjectClient.class, listener);
+    }
+
+    private void changeNameTable(EventObjectClient evt) {
+        Object[] listeners = eventListenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerObjectClient.class) {
+                ((EventListenerObjectClient) listeners[i + 1]).sendCoordinatesShot(evt);
+            }
+        }
+    }
 }

@@ -18,6 +18,7 @@ public class ConectionPanel extends JPanel{
     private JButton connect;
     public EventListenerList eventListenerList;
     private int array[][];
+    private String nameTableUser;
 
 
     public ConectionPanel(int x, int y){
@@ -87,6 +88,9 @@ public class ConectionPanel extends JPanel{
         });
     }
 
+    public void setNameTableUser(String str){
+        nameTableUser = str;
+    }
     public void setShip(int array[][]){
         this.array = array;
     }
