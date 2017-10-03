@@ -86,8 +86,11 @@ public class Loader extends JFrame{
                         setConnectionPanelAndConnectionTablePanel();
                         cp.setShip(eventObject.getArray());
                         setListener();
+                        setListenerCP();
                         setListenerClient();
                         setListenerCTP();
+//                        setListenerSecondGamePanel();
+
 //                        setFirstGamePanelAndSecond GamePanel();
 //                        sgp.setShip(eventObject.getArray());
                     }
@@ -142,6 +145,9 @@ public class Loader extends JFrame{
 
                     @Override
                     public  void changeNameUser(EventObjectClient eventObjectClient){}
+
+                    @Override
+                    public  void sendNameUser(EventObjectClient eventObjectClient){}
                 });
             }
         });
@@ -151,12 +157,12 @@ public class Loader extends JFrame{
         cp.addMyEventListener(new MyEventListener() {
             @Override
             public void clickButton(MyEventObject eventObject) {
-                        setFirstGamePanelAndSecondGamePanel();
+                setFirstGamePanelAndSecondGamePanel();
             }
 
             @Override
             public void getArray(MyEventObject eventObject) {
-                        sgp.setShip(eventObject.getArray());
+                sgp.setShip(eventObject.getArray());
             }
 
             @Override
@@ -186,13 +192,35 @@ public class Loader extends JFrame{
 
             }
 
+
+            @Override
+            public  void sendNameUser(EventObjectClient eventObjectClient){
+                client.setNameUser(eventObjectClient.getNameCreatOrConnectUser());
+            }
+
             @Override
             public void sendCommandConnection(EventObjectClient eventObjectClient) {
-                client.sendMassageCommand(eventObjectClient.getNameTableUser(),eventObjectClient.getCommandConnection());
+                client.setNameUserFromTableToConnect(eventObjectClient.getNameTableUser());
+                System.out.println("Сработал метод sendCommandConnection " + eventObjectClient.getCommandConnection() + " -- " + eventObjectClient.getNameTableUser());
+                client.sendMassageCommand(eventObjectClient.getNameCreatOrConnectUser(), eventObjectClient.getCommandConnection());
             }
 
             @Override
             public  void changeNameUser(EventObjectClient eventObjectClient){}
+        });
+    }
+
+    private void setListenerCP(){
+        cp.addEventListenerObjectSendString(new EventListenerSendString() {
+            @Override
+            public void sendStringCreateOrConnect(EventObjectSendString eventObjectSendString) {
+                sgp.setFlagWord(eventObjectSendString.getSendFlagWord());
+            }
+
+            @Override
+            public void sendMyNameOrMyOpponent(EventObjectSendString eventObjectSendString) {
+                fgp.setMyName(eventObjectSendString.getSendMyName());
+            }
         });
     }
 
@@ -205,7 +233,9 @@ public class Loader extends JFrame{
 
             @Override
             public void getDataUser(EventObjectClient eventObjectClient) {
+                System.out.println("getDataUser() ///////////" );
                 ctp.setDataUser(eventObjectClient.getDataUser());
+//                ctp.setDataUser(eventObjectClient.getDataUser());
             }
 
             @Override
@@ -223,6 +253,38 @@ public class Loader extends JFrame{
 
             @Override
             public  void changeNameUser(EventObjectClient eventObjectClient){}
+
+            @Override
+            public  void sendNameUser(EventObjectClient eventObjectClient){}
+        });
+
+        client.addEventListenerSetOpponentName(new EventListenerSendString() {
+            @Override
+            public void sendStringCreateOrConnect(EventObjectSendString eventObjectSendString) {
+
+            }
+
+            @Override
+            public void sendMyNameOrMyOpponent(EventObjectSendString eventObjectSendString) {
+                fgp.setNameMyOpponent(eventObjectSendString.getSendMyName());
+            }
+        });
+
+        client.addEventListenerSendAnswerServerControlWord(new EventListenerSendShot() {
+            @Override
+            public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
+                sgp.setControlMoveAnswerFromServer(eventObjectSendShot.getAnswerServer());
+            }
+
+            @Override
+            public void sendWordStart(EventObjectSendShot eventObjectSendShot) {
+                sgp.setWordStart(eventObjectSendShot.getWordStartGame());
+            }
+
+            @Override
+            public void controlTimer(EventObjectSendShot eventObjectSendShot) {
+
+            }
         });
     }
 
@@ -255,7 +317,51 @@ public class Loader extends JFrame{
 
             @Override
             public void changeNameUser(EventObjectClient eventObjectClient) {
+                System.out.println("Сработал метод setNameTableUser В CTP");
                 cp.setNameTableUser(eventObjectClient.getNameTableUser());
+            }
+
+            @Override
+            public  void sendNameUser(EventObjectClient eventObjectClient){
+//                client.setNameUser(eventObjectClient.getNameCreatOrConnectUser());
+            }
+        });
+    }
+
+    private void setListenerSecondGamePanel(){
+        sgp.addEventListenerSendAnswerServerControlWord(new EventListenerSendShot() {
+            @Override
+            public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
+
+            }
+
+            @Override
+            public void sendWordStart(EventObjectSendShot eventObjectSendShot) {
+
+            }
+
+            @Override
+            public void controlTimer(EventObjectSendShot eventObjectSendShot) {
+                fgp.setControlTimer(eventObjectSendShot.getControlTimer());
+            }
+        });
+    }
+
+    private void setListenerFirstGamePanel(){
+        fgp.addEventListenerLoseYourMove(new EventListenerSendShot() {
+            @Override
+            public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
+
+            }
+
+            @Override
+            public void sendWordStart(EventObjectSendShot eventObjectSendShot) {
+
+            }
+
+            @Override
+            public void controlTimer(EventObjectSendShot eventObjectSendShot) {
+                sgp.setLoseMove(eventObjectSendShot.getLoseMove());
             }
         });
     }
@@ -268,6 +374,8 @@ public class Loader extends JFrame{
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(fgp, BorderLayout.NORTH);
         mainPanel.add(sgp, BorderLayout.CENTER);
+        setListenerFirstGamePanel();
+        setListenerSecondGamePanel();
 
     }
 
@@ -275,6 +383,7 @@ public class Loader extends JFrame{
         clearMainPanel();
         setSizeFrame(width / 2, height / 2);
         cp = new ConectionPanel((((width / 100) * 60) / 100) * 10, getHeight());
+//        System.out.println((((width / 100) * 60) / 100) * 10 + " _________________----------------------------------------------");
         ctp = new ConnectionTablePanel(width - (((width / 100) * 60) / 100) * 10, getHeight());
         add(mainPanel,BorderLayout.CENTER);
 //        mainPanel.setLayout(new BorderLayout());

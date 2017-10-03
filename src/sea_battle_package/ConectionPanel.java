@@ -6,31 +6,31 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * Created by Alexandr on 24.07.2017.
  */
 public class ConectionPanel extends JPanel{
 
-    private JLabel labelName;
+//    private JLabel labelName;
     private JTextField textName;
     private JButton create;
     private JButton connect;
     public EventListenerList eventListenerList;
     private int array[][];
     private String nameTableUser;
+    Object objectNameUser;
+    private ArrayList<JButton> arrayListJButton;
 
 
     public ConectionPanel(int x, int y){
         setPreferredSize(new Dimension(x, y));
         setLayout(new GridBagLayout());
-
-
+        arrayListJButton = new ArrayList<>();
+        nameTableUser = "";
+        objectNameUser = new Object();
         eventListenerList = new EventListenerList();
-
-//        labelName = new JLabel("Name:");
-//        add(labelName, new GridBagConstraints(0,0,1,1,0.5,0.5,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
-//                new Insets(0,0,0,0),0,0));
 
         textName = new JTextField(10);
         textName.setText("Your name");
@@ -46,33 +46,57 @@ public class ConectionPanel extends JPanel{
 
     private void setButtonPanel(JButton button, String name, int weighty) {
         button = new JButton(name);
+        arrayListJButton.add(button);
+        turnOffButton(button);
         add(button, new GridBagConstraints(0,GridBagConstraints.RELATIVE,1,1,0,weighty,GridBagConstraints.NORTHWEST,GridBagConstraints.HORIZONTAL,
                 new Insets(0,0,0,0),0,0));
         addActionListenerButton(button);
     }
 
     private boolean checkString(String stringName){
-        if(stringName.length() < 3){
-            return false;
+        if(stringName.length() > 3){
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    private void turnOffButton(JButton but){
+        but.setEnabled(false);
+    }
+
+    private void turnOnButton(JButton but){
+        but.setEnabled(true);
     }
 
     private void addActionListenerButton(JButton button){
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getActionCommand().equals("Create")){
-                    fireMyEvent(new MyEventObject());
-                    goMyEvent(new MyEventObject(array));
-                    sendConnection(new EventObjectClient(e.getActionCommand()));
-                    sendArrayShip(new EventObjectClient(array));
 
-                }else{
+                if(e.getActionCommand().equals("Create")){
+                    System.out.println("В начале кнопки СОЗДАТЬ");
+//                    nameTableUser = textName.getText();
+                    objectNameUser = textName.getText();
                     fireMyEvent(new MyEventObject());
                     goMyEvent(new MyEventObject(array));
-                    sendConnection(new EventObjectClient(e.getActionCommand()));
+                    sendNameUser(new EventObjectClient(objectNameUser));
+                    sendString(new EventObjectSendString(e, e.getActionCommand().toString()));
+                    sendMyName(new EventObjectSendString(textName.getText()));
+                    sendConnection(new EventObjectClient(e.getActionCommand().toString()));
                     sendArrayShip(new EventObjectClient(array));
+                    System.out.println("В конце кнопки СОЗДАТЬ");
+                }else{
+                    System.out.println("В начале кнопки ПОДКЛЮЧИТСЯ");
+                    System.out.println(nameTableUser + " ++++++++++++++ " + e.getActionCommand());
+                    objectNameUser = textName.getText() + "," + nameTableUser;
+                    fireMyEvent(new MyEventObject());
+                    goMyEvent(new MyEventObject(array));
+                    sendNameUser(new EventObjectClient(objectNameUser));
+                    sendString(new EventObjectSendString(e, e.getActionCommand().toString()));
+                    sendMyName(new EventObjectSendString(textName.getText()));
+                    sendConnection(new EventObjectClient("ConnectUser"));
+                    sendArrayShip(new EventObjectClient(array));
+                    System.out.println("В конце кнопки ПОДКЛЮЧИТСЯ");
                 }
             }
         });
@@ -84,14 +108,61 @@ public class ConectionPanel extends JPanel{
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
                 tf.setText("");
+                addDocListener(tf);
             }
         });
     }
 
-    public void setNameTableUser(String str){
-        nameTableUser = str;
+    private void addDocListener(JTextField tf)
+    {
+        tf.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e)
+            {
+                if(checkString(tf.getText())){
+                    turnOnButton(arrayListJButton.get(0));
+                    turnOnButton(arrayListJButton.get(1));
+                }else{
+                    turnOffButton(arrayListJButton.get(0));
+                    turnOffButton(arrayListJButton.get(1));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e)
+            {
+                if(checkString(tf.getText())){
+                    turnOnButton(arrayListJButton.get(0));
+                    turnOnButton(arrayListJButton.get(1));
+                }else{
+                    turnOffButton(arrayListJButton.get(0));
+                    turnOffButton(arrayListJButton.get(1));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e)
+            {
+
+            }
+        });
+    }
+
+    public void setNameTableUser(String selectName){
+        if(nameTableUser.length() == 0) {
+            nameTableUser = selectName;
+        }else{
+            nameTableUser = "";
+            nameTableUser = selectName;
+        }
+        System.out.println(nameTableUser + " NNNNAAAAAAMMMMEEEE");
     }
     public void setShip(int array[][]){
+//        for (int i = 0; i < array.length; i++) {
+//            for (int j = 0; j < array[i].length; j++) {
+//                System.out.println(array[i][j] + "ЭТО В МЕТОДЕ setShip КЛАСС ConectionPanel " + array.length + "-----" + array[0].length);
+//            }
+//        }
         this.array = array;
     }
 
@@ -101,6 +172,10 @@ public class ConectionPanel extends JPanel{
 
     public void addEventListenerObjectClient(EventListenerObjectClient listener) {
         listenerList.add(EventListenerObjectClient.class, listener);
+    }
+
+    public void addEventListenerObjectSendString(EventListenerSendString listener) {
+        listenerList.add(EventListenerSendString.class, listener);
     }
 
     public void removeMyEventListener(MyEventListener listener) {
@@ -129,7 +204,7 @@ public class ConectionPanel extends JPanel{
         Object[] listeners = listenerList.getListenerList();
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == EventListenerObjectClient.class) {
-                ((EventListenerObjectClient) listeners[i + 1]).sendCoordinatesShot(evt);
+                ((EventListenerObjectClient) listeners[i + 1]).sendCommandConnection(evt);
             }
         }
     }
@@ -139,6 +214,33 @@ public class ConectionPanel extends JPanel{
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == EventListenerObjectClient.class) {
                 ((EventListenerObjectClient) listeners[i + 1]).sendArrayCoordinatesShips(evt);
+            }
+        }
+    }
+
+    private void sendNameUser(EventObjectClient evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerObjectClient.class) {
+                ((EventListenerObjectClient) listeners[i + 1]).sendNameUser(evt);
+            }
+        }
+    }
+
+    private void sendString(EventObjectSendString evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendString.class) {
+                ((EventListenerSendString) listeners[i + 1]).sendStringCreateOrConnect(evt);
+            }
+        }
+    }
+
+    private void sendMyName(EventObjectSendString evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendString.class) {
+                ((EventListenerSendString) listeners[i + 1]).sendMyNameOrMyOpponent(evt);
             }
         }
     }

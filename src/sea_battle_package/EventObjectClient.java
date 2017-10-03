@@ -12,10 +12,12 @@ public class EventObjectClient extends EventObject {
     private String coordinatesShot;
     private String command;
     private String nameUser;
+    private String nameCreatOrConnectUser;
 
-    public  EventObjectClient(Object object, String coordinatesShot) {
+
+    public  EventObjectClient(Object object, String SelectNameConnectUser) {
         super(object);
-        nameUser = coordinatesShot;
+        nameUser = SelectNameConnectUser;
     }
 
     public  EventObjectClient(int [][] array) {
@@ -33,6 +35,10 @@ public class EventObjectClient extends EventObject {
         command = com;
     }
 
+    public  EventObjectClient(Object name) {
+        super(new EventObject(new Object()));
+        nameCreatOrConnectUser = name.toString();
+    }
 
     public  EventObjectClient() {
         super(new EventObject(new Object()));
@@ -56,5 +62,9 @@ public class EventObjectClient extends EventObject {
 
     public String getNameTableUser(){
         return nameUser;
+    }
+
+    public String getNameCreatOrConnectUser(){
+        return nameCreatOrConnectUser;
     }
 }

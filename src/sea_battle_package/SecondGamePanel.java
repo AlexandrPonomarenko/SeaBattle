@@ -3,11 +3,13 @@ package sea_battle_package;
 import com.sun.awt.AWTUtilities;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.EventObject;
 
 /**
  * Created by Alexandr on 03.07.2017.
@@ -23,10 +25,17 @@ public class SecondGamePanel extends JPanel {
     private int [][] arrayFieldTwo;
     private Timer timerWait;
     private int startNumberTimer = 0;
+    private int endTimer = 180;
     private String create = "Waiting for an opponent to connect";
     private String afterStart = "You have 30 seconds to make a move. You go first!";
     private String ready = "The game will start";
     private String connect = "You have 30 seconds to make a move. You go second!";
+    private String flagWord;
+    private String startGame = "";
+    private boolean flagControlTimer = true;
+    private boolean controlMove = false;
+    private int loseMove;
+    private EventListenerList listenerList;
 
     private boolean flagRec;
     private boolean flag = false;
@@ -45,6 +54,7 @@ public class SecondGamePanel extends JPanel {
         addMouseMotionListener();
         setTimer();
         timerStart();
+        listenerList = new EventListenerList();
     }
 
     private void setCorPanel(int w, int h) {
@@ -67,6 +77,8 @@ public class SecondGamePanel extends JPanel {
         drawCell(g);
         updateGrid(g);
         drawShot(g);
+        controlDrawLineAndDrawText(g);
+
 //        drawFatLine(g);
 //        drawStartText(g, create);
     }
@@ -87,10 +99,11 @@ public class SecondGamePanel extends JPanel {
         if(corX > width / 2) {
             setCor(width / 2 + LEFT, width - RIGHT, width - RIGHT, corX, corY, arrayFieldTwo);
             //flagRec = false;
-        }else {
-            setCor(LEFT,width / 2 - RIGHT, (width / 2) - LEFT - RIGHT, corX, corY, arrayField);
-            //flagRec = true;
         }
+//      else {
+//            setCor(LEFT,width / 2 - RIGHT, (width / 2) - LEFT - RIGHT, corX, corY, arrayField);
+//            //flagRec = true;
+//        }
     }
 
     private void setCor(int startPoz, int border, int length, int corX, int corY, int array[][]){
@@ -156,11 +169,11 @@ public class SecondGamePanel extends JPanel {
         }else if(arrayFieldTwo[x][y] == 1){drawFlag = false;}
     }
     private void drawShot(Graphics g){
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++___--------------------------------------------");
+//        System.out.println("++++++++++++++++++++++++++++++++++++++++++___--------------------------------------------");
         g.setColor(Color.BLUE);
         if(tempCorX >= 0 && tempCorY >= 0){
             if (drawFlag) {
-                System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("++++++++++++++++++++++++++++++++++++++++++");
                 g.fillOval(tempCorX * recWidth + RIGHT + (width / 2) + recWidth / 2 - (recWidth / 3) / 2,
                         tempCorY * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
             } else {
@@ -175,14 +188,79 @@ public class SecondGamePanel extends JPanel {
         g.fillRect(0,100,width,150);
 
     }
-    private void drawStartText(Graphics g, String string) {
+    private void drawText(Graphics g, String stringText) {
         g.setColor(new Color(240, 128, 128, 128));
         Font font = new Font("San Francisco", Font.BOLD | Font.ITALIC, 30);
         int c = font.getSize();
         g.setFont(font);
-        g.drawString(string + " :  " + startNumberTimer, (width / 2 - (width / 2 / 2)) - c, 175);
+        g.drawString(stringText + " :  " + startNumberTimer, (width / 2 - (width / 2 / 2 / 2)) - c, 175);
     }
 
+    private void controlDrawLineAndDrawText(Graphics g){
+        if(flagControlTimer) {
+            if (flagWord.equals("Create")) {
+                System.out.println("ЗАШЕЛ В БЛОК CREATE");
+                if (startGame.equals("start")) {
+                    System.out.println("ЗАШЕЛ В ПОДБЛОК START БЛОКА CREATE");
+                    controlMove = true;
+                    drawFatLine(g);
+                    drawText(g, afterStart);
+                    setTimerWait();
+                    repaint();
+                } else {
+                    System.out.println("ЗАШЕЛ В БЛОК CREATE КОГДА ЕЩЕ НЕ ПРИШЛО СЛОВО START" );
+                    drawFatLine(g);
+                    drawText(g, create);
+                    repaint();
+                }
+            } else if (flagWord.equals("Connect")) {
+//                timerStop();
+                System.out.println("ЗАШЕЛ С БЛОК CONNECT");
+                if(startGame.equals("start")){
+                    System.out.println("ЗАШЕЛ В ПОДБЛОК START БЛОКА CONNECT");
+                    setTimerWait();
+//                    timerStart();
+                    controlMove = false;
+                    drawFatLine(g);
+                    drawText(g, connect);
+                    repaint();
+                }
+            }
+        }
+    }
+
+    public void setFlagWord(String flagWord){
+        this.flagWord = flagWord;
+        System.out.println(flagWord);
+    }
+
+    public void setWordStart(String start){
+        startGame = start;
+        System.out.println(startGame + "ЭТО В МЕТОДЕ УСТАНОВКИ СЛОВА СТАРТ setWordStart");
+    }
+
+    public void setControlMoveAnswerFromServer(String answerFromServer){
+        if(answerFromServer.equals("true")){
+            controlMove = true;
+            if(controlMove) {
+                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+            }
+            System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ");
+        }else if(answerFromServer.equals("false")){
+            controlMove = false;
+            if(!controlMove) {
+                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+            }
+            System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ");
+        }
+    }
+    public void setTimerWait(){
+        if(!flag){
+            startNumberTimer = 0;
+            endTimer = 6;
+            flag = true;
+        }
+    }
     public void setFlag(boolean flag)
     {
         this.flag = flag;
@@ -193,14 +271,24 @@ public class SecondGamePanel extends JPanel {
         repaint();
     }
 
+    public void setLoseMove(int loseMove){
+        this.loseMove = loseMove;
+        if(loseMove == 3){
+            sendCordinatesShot(new EventObjectSendShot(new Object(),"lose"));
+        }
+    }
+
     private void addMouseMotionListener(){
         addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
                 //super.mouseClicked(e);
-                System.out.println("CLIKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
-                findCorCell(e.getX(), e.getY());
-                repaint();
+                System.out.println("CLIKKKKKKKKKK");
+                if(controlMove) {
+                    findCorCell(e.getX(), e.getY());
+                    repaint();
+                    System.out.println("CLIKKKKKKKKKKEEEEEDDDDDDD" + controlMove);
+                }
             }
         });
     }
@@ -210,10 +298,21 @@ public class SecondGamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                System.out.println("TIMER ____________+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                if(startNumberTimer < 180){
+                System.out.println("TIMER ____________in SECOND GAME PANEL");
+                if(startNumberTimer < endTimer){
                     startNumberTimer++;
-                }else{startNumberTimer = 0;}
+                    System.out.println("Таймер " + startNumberTimer);
+                }else{
+                    timerStop();
+                    flagControlTimer = false;
+                    System.out.println(flagControlTimer + "EEEEEEEEEEEEEEEEEEEEEE");
+                    repaint();
+                    System.out.println("Таймер СТОП" + flagControlTimer);
+                    startNumberTimer = 0;
+                    if(controlMove) {
+                        sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+                    }
+                }
             }
         });
     }
@@ -224,4 +323,26 @@ public class SecondGamePanel extends JPanel {
         timerWait.stop();
     }
 
+    public void addEventListenerSendAnswerServerControlWord(EventListenerSendShot listener)
+    {
+        listenerList.add(EventListenerSendShot.class, listener);
+    }
+
+    private void sendCordinatesShot(EventObjectSendShot evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendShot.class) {
+                ((EventListenerSendShot) listeners[i + 1]).sendCoordinateShotOrAnswerServer(evt);
+            }
+        }
+    }
+
+    private void sendControlTimerInFirsPanel(EventObjectSendShot evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendShot.class) {
+                ((EventListenerSendShot) listeners[i + 1]).sendCoordinateShotOrAnswerServer(evt);
+            }
+        }
+    }
 }

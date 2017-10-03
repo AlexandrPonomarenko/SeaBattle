@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+import javax.swing.event.EventListenerList;
 
 /**
  * Created by Alexandr on 03.07.2017.
@@ -20,11 +21,17 @@ public class FirstGamePanel extends JPanel  {
     private int [] yCor;
     private int timerSpeed = 1000;
     private int startNumberTimer = 30;
+    private String myName = "myNoName";
+    private String nameMyOpponent = "opponentNoName";
+    private int controlTimer;
+    private EventListenerList listenerList;
 
     public FirstGamePanel(int w, int h){
         setPreferredSize(new Dimension(w,h));
         setTimer();
-        timerStart();
+//        timerStart();
+        timerStop();
+        listenerList = new EventListenerList();
 //        gbl = new GridBagLayout();
 //        setLayout(gbl);
 //        time = new JLabel("Time");
@@ -55,8 +62,8 @@ public class FirstGamePanel extends JPanel  {
 //        repaintComponent(g);
         drawString(g, getWidth() / 2, 0, "Time", "top");
         drawString(g, getWidth() / 2, getHeight(), "Status", "bottom");
-        drawString(g, getWidth() / 100 * 10, getHeight(), "Alexandr", "bottom");
-        drawString(g, getWidth() / 100 * 90, getHeight(), "NoName", "bottom");
+        drawString(g, getWidth() / 100 * 10, getHeight(), myName, "bottom");
+        drawString(g, getWidth() / 100 * 90, getHeight(), nameMyOpponent, "bottom");
         drawNumber(g, getWidth(), 0, startNumberTimer);
     }
 
@@ -85,17 +92,49 @@ public class FirstGamePanel extends JPanel  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                System.out.println("TIMER ____________+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println("TIMER ____________ in FIRST GAME PANEL");
                 if(startNumberTimer > 0){
                     startNumberTimer--;
-                }else{startNumberTimer = 30;}
+                }else{
+                    startNumberTimer = 30;
+                    startNumberTimer = 0;
+                    loseYourMove(new EventObjectSendShot(3));
+                    timerStop();
+                }
             }
         });
+    }
+
+    public void setTimerWait(){
+        if(controlTimer == 1){
+            startNumberTimer = 0;
+            timerStart();
+        }else if(controlTimer == 0){
+            timerStop();
+        }
+    }
+
+    public void setMyName(String myName){
+        this.myName = myName;
+        System.out.println(myName + " ---- ЭТО В МЕТОДЕ setMyName");
+        repaint();
+    }
+
+    public void setNameMyOpponent(String nameMyOpponent){
+        this.nameMyOpponent = nameMyOpponent;
+        System.out.println(nameMyOpponent + " ---- ЭТО В МЕТОДЕ setNameMyOpponent" + this.nameMyOpponent);
+        repaint();
+    }
+
+    public void setControlTimer(int conTim){
+        controlTimer = conTim;
+        setTimerWait();
     }
 
     private void timerStop(){timer.stop();}
 
     private void timerStart(){timer.start();}
+
     private void setCoordinates(int w, int h, int v) {
         xCor = new int[v];
         yCor = new int[v];
@@ -121,6 +160,20 @@ public class FirstGamePanel extends JPanel  {
                 xCor[i] = (w / 2) - 20;
                 yCor[i] = 0;
 //                System.out.println(xCor[i] + " i == 4 " + yCor[i]);
+            }
+        }
+    }
+
+    public void addEventListenerLoseYourMove(EventListenerSendShot listener)
+    {
+        listenerList.add(EventListenerSendShot.class, listener);
+    }
+
+    private void loseYourMove(EventObjectSendShot evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendShot.class) {
+                ((EventListenerSendShot) listeners[i + 1]).sendCoordinateShotOrAnswerServer(evt);
             }
         }
     }

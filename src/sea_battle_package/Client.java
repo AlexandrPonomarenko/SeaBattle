@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Created by Alexandr on 02.08.2017.
@@ -19,11 +20,13 @@ public class Client {
     private Socket sock;
     private BufferedReader reader;
     private PrintWriter writer;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
+//    private ObjectOutputStream oos;
+//    private ObjectInputStream ois;
     private Scanner sc;
     private String massage;
     private String[][] dataTable;
+    private String nameUser;
+    private String nameUserFromTableToConnect;
     private EventListenerList eventListenerList;
     private EventListenerList listenerList;
 
@@ -61,15 +64,15 @@ public class Client {
         users.add(name);
     }
 
-    private void createStreamObject(){
-        try {
-            oos = new ObjectOutputStream(sock.getOutputStream());
-            ois = new ObjectInputStream(sock.getInputStream());
-        }catch(IOException e){
-            System.out.println("Проблема с потоком обьектов");
-            e.printStackTrace();
-        }
-    }
+//    private void createStreamObject(){
+//        try {
+//            oos = new ObjectOutputStream(sock.getOutputStream());
+//            ois = new ObjectInputStream(sock.getInputStream());
+//        }catch(IOException e){
+//            System.out.println("Проблема с потоком обьектов");
+//            e.printStackTrace();
+//        }
+//    }
 
     public void writeUsers() {
         String[] tempList = new String[(users.size())];
@@ -89,27 +92,54 @@ public class Client {
         }
     }
 
-    public void sendMassageCommand(String message, String commandWords) {
+    public void sendMassageCommand(String name, String commandWords) {
         try {
-            writer.println(username + ":" + message + ":" + commandWords);
-            writer.flush();
+            System.out.println("ЭТО В МЕТОДЕ sendMassageCommand " + nameUser + ":" + nameUser + ":" + nameUserFromTableToConnect);
+//            message = "Hello";
+            System.out.println("ЭТО В МЕТОДЕ sendMassageCommand " + username + ":" + nameUser + ":" + commandWords);
+            if(commandWords.equals("Create")){
+                writer.println(username + ":" + nameUser + ":" + commandWords);
+                username = nameUser;
+                writer.flush();
+            }else if(commandWords.equals("ConnectUser")) {
+                writer.println(username + ":" + nameUser + ":" + commandWords);
+                username = nameUser;
+                writer.flush();
+            }
         }
         catch (Exception ex) {
             System.out.println("sendMassage" + "Message was not sent.");
         }
     }
 
-    public void sendArrayShip(int [][] arr){
-//                oos = new ObjectOutputStream(sock.getOutputStream());
+    public void sendArrayShip(int [][] arrayCoordinatesShip){
         try {
-            oos.writeObject(arr);
-            oos.flush();
-//            oos.close();
+            writer.println(username + ":" + intInString(arrayCoordinatesShip) + ":" + "array");
+//            sendMassageCommand("Hello", "Create");
+            writer.flush();
         } catch (Exception ex) {
             System.out.println("НЕ УДАЛОСЬ ОТПРАВИТЬ МАССИВ");
         }
     }
 
+    public void setNameUser(String nameUser){
+        this.nameUser = nameUser;
+    }
+
+    public void setNameUserFromTableToConnect(String nameUser){
+        nameUserFromTableToConnect = nameUser;
+        System.out.println(nameUserFromTableToConnect + "ЭТО В КЛИЕНТЕ");
+    }
+//    private void
+    private String intInString(int[][] arrayCoordinatesShip){
+        String arrayCoordinatesShipToString = "";
+        for(int i = 0; i < arrayCoordinatesShip.length;i++){
+            for(int j = 0; j < arrayCoordinatesShip[i].length;j++) {
+                arrayCoordinatesShipToString +=arrayCoordinatesShip[i][j] + ",";
+            }
+        }
+        return arrayCoordinatesShipToString.substring(0,arrayCoordinatesShipToString.length() - 1);
+    }
 
 
     public void userRemove(String data) {
@@ -154,7 +184,7 @@ public class Client {
                 writer.println(username + ":has connected.:Connect");
                 writer.flush();
 //                writer.close();
-                createStreamObject();
+//                createStreamObject();
                 isConnected = true;
             } catch (Exception ex) {
                 System.out.println("Cannot Connect! Try Again. \n");
@@ -171,12 +201,76 @@ public class Client {
         listenerList.add(EventListenerObjectClient.class, listener);
     }
 
+    public void addEventListenerSetOpponentName(EventListenerSendString listener)
+    {
+        listenerList.add(EventListenerSendString.class, listener);
+    }
+
+    public void addEventListenerSendAnswerServerControlWord(EventListenerSendShot listener)
+    {
+        listenerList.add(EventListenerSendShot.class, listener);
+    }
+
+    private void sendAnswer(EventObjectSendShot evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendShot.class) {
+                ((EventListenerSendShot) listeners[i + 1]).sendCoordinateShotOrAnswerServer(evt);
+            }
+        }
+    }
+
+    private void sendWordStart(EventObjectSendShot evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendShot.class) {
+                ((EventListenerSendShot) listeners[i + 1]).sendWordStart(evt);
+            }
+        }
+    }
+
+    private void setOpponentName(EventObjectSendString evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == EventListenerSendString.class) {
+                ((EventListenerSendString) listeners[i + 1]).sendMyNameOrMyOpponent(evt);
+            }
+        }
+    }
+
     private void fireMyEvent(EventObjectClient evt) {
         Object[] listeners = listenerList.getListenerList();
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == EventListenerObjectClient.class) {
                 ((EventListenerObjectClient) listeners[i + 1]).getDataUser(evt);
             }
+        }
+    }
+
+    private void stringInArrayString(String test){
+        System.out.println(test + " ТОЛЬКО ЗАШЕЛ В МЕТОД");
+        if(test.equals("default")){
+            dataTable = new String[1][1];
+            dataTable[0][0] = test;
+            System.out.println(dataTable[0][0] + " ПРИШЛА СТРОКА С ДЕФОЛТНЫМИ НАСТРОЙКАМИ");
+        } else if(!test.equals("default")) {
+            System.out.println("--------- " + test);
+            String tests[] = test.split(",");
+//            for (int i = 0; i < tests.length; i++) {
+////            System.out.println(tests[i] + "   Это в методе рабиения строки на массив!!!");
+//            }
+            int count = 0;
+            dataTable = new String[tests.length / 3][3];
+            for (int i = 0; i < dataTable.length; i++) {
+                for (int j = 0; j < dataTable[i].length; j++) {
+                    dataTable[i][j] = tests[count];
+                System.out.println(dataTable[i][j] + " ЭТО В МЕТОДЕ - stringInArrayString");
+                    count += 1;
+                }
+//                count = 0;
+            }
+            count = 0;
+            System.out.println(dataTable.length + " LLLLLLLL");
         }
     }
 
@@ -187,38 +281,49 @@ public class Client {
         {
             String[] data;
             String[][]dataUser = new String[10][10];
-            String stream, done = "Done", connect = "Connect", disconnect = "Disconnect", chat = "Chat";
+            String stream, done = "Done", connect = "Connect", disconnect = "Disconnect", chat = "Chat",commandServer = "array",
+            answerServer = "answer";
             try
             {
-                while ((stream = reader.readLine()) != null || ((dataUser = (String[][]) ois.readObject()) != null))
+                while ((stream = reader.readLine()) != null)
                 {
+                    System.out.println(stream);
                     data = stream.split(":");
+                    data[1] = data[1].replace('+', ':');
+                    System.out.println(data[0] + " = " + data[1] + " = " +  data[2] + "=");
 
-                    if (data[2].equals(chat))
-                    {
-//                        panel2.addMessage("" + sdf.format(date), data[0], data[1]);
+                    if (data[2].equals(chat)) {
                         System.out.println("chat  ++++ " + data[0] + " " + data[1] );
+                        if(data[1].substring(0, 4).equals("Name")) {
+                            System.out.println(data[1].substring(14, data[1].length()) + "ЭТО НА КЛИЕНТЕ ПЕРЕД ОТПРАВКОЙ НА ПАНЕЛЬ ИМЕНИ ПРОТИВНИКА!!");
+                            setOpponentName(new EventObjectSendString(data[1].substring(14, data[1].length())));
+                        }
+
+                        if(data[1].equals("start")){
+                            System.out.println(data[1] + " ПЕРЕД ОТПРАВКИ СЛОВА СТАРТ");
+                            sendWordStart(new EventObjectSendShot(data[1]));
+                            System.out.println(data[1] + " ПОСЛЕ ОТПРАВКИ СЛОВА СТАРТ");
+                        }
                     }
-                    else if (data[2].equals(connect))
-                    {
+                    else if (data[2].equals(connect)) {
                         userAdd(data[0]);
                     }
-                    else if (data[2].equals(disconnect))
-                    {
+                    else if (data[2].equals(disconnect)) {
                         System.out.println("Вы были отключены и вернуль в очередь!!");
 //                        userRemove(data[0]);
 //                        sendDisconnect();
 //                        dissconnect();
-                    }
-                    else if (data[2].equals(done))
-                    {
+                    }else if (data[2].equals(done)) {
                         writeUsers();
                         users.clear();
-                    }else if((ois.readObject()) != null){
+                    }else if (data[2].equals(answerServer)){
+                        sendAnswer(new EventObjectSendShot(data[1]));
+                    }else if(data[2].equals(commandServer)){
                         System.out.println("Принял массив юзеров!!!");
-                        fireMyEvent(new EventObjectClient(dataUser));
-                        getArray(dataUser);
-                        ois.close();
+                        stringInArrayString(data[1]);
+                        System.out.println(dataTable.length + "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+                        fireMyEvent(new EventObjectClient(dataTable));
+//                        getArray(dataTable);
                     }
                 }
             }catch(Exception ex) {

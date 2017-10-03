@@ -12,4 +12,5 @@ public interface EventListenerObjectClient extends EventListener {
     public void startClient(EventObjectClient eventObjectClient);
     public void sendCommandConnection(EventObjectClient eventObjectClient);
     public void changeNameUser(EventObjectClient eventObjectClient);
+    public void sendNameUser(EventObjectClient eventObjectClient);
 }
