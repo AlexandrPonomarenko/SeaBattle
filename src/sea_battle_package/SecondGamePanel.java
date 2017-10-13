@@ -23,6 +23,7 @@ public class SecondGamePanel extends JPanel {
     private int tempCorY = 0;
     private int [][] arrayField;
     private int [][] arrayFieldTwo;
+    private int [][] copyArrayFieldForBreakMyShips;
     private Timer timerWait;
     private int startNumberTimer = 0;
     private int endTimer = 180;
@@ -30,11 +31,15 @@ public class SecondGamePanel extends JPanel {
     private String afterStart = "You have 30 seconds to make a move. You go first!";
     private String ready = "The game will start";
     private String connect = "You have 30 seconds to make a move. You go second!";
+    private String lost = "lost";
+    private String win = "win";
     private String flagWord;
     private String startGame = "";
     private boolean flagControlTimer = true;
     private boolean controlMove = false;
     private int loseMove;
+    private int tempMemberCorX;
+    private int tempMemberCorY;
     private EventListenerList listenerList;
 
     private boolean flagRec;
@@ -51,6 +56,9 @@ public class SecondGamePanel extends JPanel {
         setBackground(Color.RED);
         arrayField = new int[10][10];
         arrayFieldTwo = new int[10][10];
+        copyArrayFieldForBreakMyShips = new int[10][10];
+        initializingArray(arrayFieldTwo);
+        initializingArray(copyArrayFieldForBreakMyShips);
         addMouseMotionListener();
         setTimer();
         timerStart();
@@ -76,11 +84,22 @@ public class SecondGamePanel extends JPanel {
         g.fillRect(getWidth() / 2 - 20, 0,40, getHeight());
         drawCell(g);
         updateGrid(g);
-        drawShot(g);
+//        drawShot(g);
         controlDrawLineAndDrawText(g);
+        drawStatusCellMyOpponentShips(g);
+        drawStatusCellMyShips(g);
 
 //        drawFatLine(g);
 //        drawStartText(g, create);
+    }
+
+    private void initializingArray(int[][] array){
+        for (int i = 0; i < array.length; i++ ) {
+            for (int j = 0; j < array[i].length; j++ ) {
+                array[i][j] = 3;
+            }
+
+        }
     }
 
     private void drawSinglWeb(Graphics g, int stepX, int stepY, int top, int left) {
@@ -110,6 +129,7 @@ public class SecondGamePanel extends JPanel {
         int x = corX;
         int y = corY;
         int indexX = 0, indexY = 0;
+        String cordinatesShot = "";
 
         boolean flagX = false;
         boolean flagY = false;
@@ -134,7 +154,10 @@ public class SecondGamePanel extends JPanel {
             if (flagX && flagY){
                 tempCorX = indexX;
                 tempCorY = indexY;
-                checkArray(indexX, indexY);
+                setTempCorXAndCorY(tempCorX,tempCorY);
+                cordinatesShot =  String.valueOf(tempCorX) + "," + String.valueOf(tempCorY);
+                sendCordinatesShot(new EventObjectSendShot(new Object(),cordinatesShot));
+//                checkArray(indexX, indexY);
 //                array[indexX][indexY] = 1;
             }
         }
@@ -153,13 +176,13 @@ public class SecondGamePanel extends JPanel {
                 }
             }
         }
-        for (int i = 0; i < arrayFieldTwo.length; i++){
-            for (int j = 0; j < arrayFieldTwo[i].length; j++){
-                if (arrayFieldTwo[i][j] == 1){
-                    g.fillRect(i * recWidth  + RIGHT + (width / 2), j * recHeight + TOP, recWidth, recHeight);
-                }
-            }
-        }
+//        for (int i = 0; i < arrayFieldTwo.length; i++){
+//            for (int j = 0; j < arrayFieldTwo[i].length; j++){
+//                if (arrayFieldTwo[i][j] == 1){
+//                    g.fillRect(i * recWidth  + RIGHT + (width / 2), j * recHeight + TOP, recWidth, recHeight);
+//                }
+//            }
+//        }
     }
 
     private void checkArray(int x, int y){
@@ -168,20 +191,20 @@ public class SecondGamePanel extends JPanel {
             System.out.println("BLOCCCCCCCCCCCCCCCCCCCCCCCC ");
         }else if(arrayFieldTwo[x][y] == 1){drawFlag = false;}
     }
-    private void drawShot(Graphics g){
-//        System.out.println("++++++++++++++++++++++++++++++++++++++++++___--------------------------------------------");
-        g.setColor(Color.BLUE);
-        if(tempCorX >= 0 && tempCorY >= 0){
-            if (drawFlag) {
-//                System.out.println("++++++++++++++++++++++++++++++++++++++++++");
-                g.fillOval(tempCorX * recWidth + RIGHT + (width / 2) + recWidth / 2 - (recWidth / 3) / 2,
-                        tempCorY * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
-            } else {
-                g.drawLine(tempCorX, tempCorY,tempCorX + recWidth, tempCorY + recHeight );
-                g.drawLine(tempCorX + recWidth, tempCorY + recHeight, tempCorX, tempCorY);
-            }
-        }
-    }
+//    private void drawShot(Graphics g){
+////        System.out.println("++++++++++++++++++++++++++++++++++++++++++___--------------------------------------------");
+//        g.setColor(Color.BLUE);
+//        if(tempCorX >= 0 && tempCorY >= 0){
+//            if (drawFlag) {
+////                System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+//                g.fillOval(tempCorX * recWidth + RIGHT + (width / 2) + recWidth / 2 - (recWidth / 3) / 2,
+//                        tempCorY * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
+//            } else {
+//                g.drawLine(tempCorX, tempCorY,tempCorX + recWidth, tempCorY + recHeight );
+//                g.drawLine(tempCorX + recWidth, tempCorY + recHeight, tempCorX, tempCorY);
+//            }
+//        }
+//    }
 
     private void drawFatLine(Graphics g){
         g.setColor(new Color(128, 0, 128, 128));
@@ -199,7 +222,7 @@ public class SecondGamePanel extends JPanel {
     private void controlDrawLineAndDrawText(Graphics g){
         if(flagControlTimer) {
             if (flagWord.equals("Create")) {
-                System.out.println("ЗАШЕЛ В БЛОК CREATE");
+//                System.out.println("ЗАШЕЛ В БЛОК CREATE");
                 if (startGame.equals("start")) {
                     System.out.println("ЗАШЕЛ В ПОДБЛОК START БЛОКА CREATE");
                     controlMove = true;
@@ -208,7 +231,7 @@ public class SecondGamePanel extends JPanel {
                     setTimerWait();
                     repaint();
                 } else {
-                    System.out.println("ЗАШЕЛ В БЛОК CREATE КОГДА ЕЩЕ НЕ ПРИШЛО СЛОВО START" );
+                    System.out.println("ЗАШЕЛ В БЛОК CREATE КОГДА ЕЩЕ НЕ ПРИШЛО СЛОВО START " + arrayFieldTwo[0][0] );
                     drawFatLine(g);
                     drawText(g, create);
                     repaint();
@@ -240,18 +263,62 @@ public class SecondGamePanel extends JPanel {
     }
 
     public void setControlMoveAnswerFromServer(String answerFromServer){
-        if(answerFromServer.equals("true")){
+        repaint();
+        System.out.println("ПРИХОД ОТ СЕРВЕРА " + answerFromServer);
+        if(answerFromServer.equals("move")){
             controlMove = true;
-            if(controlMove) {
-                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-            }
-            System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ");
-        }else if(answerFromServer.equals("false")){
+            sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+            return;
+        }else if(answerFromServer.equals("skip move")){
             controlMove = false;
-            if(!controlMove) {
+            sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+            return;
+        }
+
+        if(answerFromServer.length() > 5) {
+            String tempArr[] = answerFromServer.split(",");
+            System.out.println(tempArr[0] + " - " + tempArr[1] + " - " + tempArr[2]);
+            if (tempArr[2].equals("true")) {
+                controlMove = true;
+                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 0;
+                repaint();
+                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ТРУ С ДАННЫМИ ОН НЕ ПОПАЛ");
+            } else if (tempArr[2].equals("false")) {
+                controlMove = false;
                 sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 1;
+                repaint();
+                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ФАЛСЕ С ДАННЫМИ ОН ПОПАЛ");
+            }else if(tempArr[2].equals("LOSE")){
+                controlMove = false;
+                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 1;
+                repaint();
+                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ВЫ проиграли");
             }
-            System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ");
+        }else if(answerFromServer.length() <= 5){
+            System.out.println("ЗАШЕЛ answerFromServer.length() <= 5");
+            if (answerFromServer.equals("true")) {
+                controlMove = true;
+                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+                System.out.println("перед установкой 1 answerFromServer.length() <= 5");
+                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
+                repaint();
+                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer answerFromServer.length() <= 5");
+            } else if (answerFromServer.equals("false")) {
+                controlMove = false;
+                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 0;
+                repaint();
+                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer answerFromServer.length() <= 5");
+            }else if(answerFromServer.equals("WIN")){
+                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
+                repaint();
+                controlMove = false;
+                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ПОБЕДААААА!!!!");
+            }
         }
     }
     public void setTimerWait(){
@@ -261,21 +328,80 @@ public class SecondGamePanel extends JPanel {
             flag = true;
         }
     }
-    public void setFlag(boolean flag)
-    {
-        this.flag = flag;
+
+//    private void changeCell(int corX, int corY, int statusCell){
+//        arrayFieldTwo[corX][corY] = statusCell;
+//    }
+
+    private void drawStatusCellMyOpponentShips(Graphics g){
+        for(int i = 0; i < arrayFieldTwo.length;i++){
+            for(int j = 0; j < arrayFieldTwo[i].length;j++){
+                g.setColor(Color.red);
+
+                if(arrayFieldTwo[i][j] == 1){
+//                    System.out.println("--- " + tempCorX + " " + tempCorY + " " + (tempCorX + recWidth) + " " + (tempCorY + recHeight));
+                    g.drawLine(i * recWidth + (width / 2) + RIGHT, j * recHeight + TOP,
+                            i * recWidth + (width / 2) + RIGHT + recWidth , j * recHeight + TOP + recHeight );
+                    g.drawLine(i * recWidth + RIGHT + recWidth + (width / 2),
+                            j * recHeight + TOP, i * recWidth + (width / 2) + RIGHT , j * recHeight + TOP + recHeight);
+//                    System.out.println("LINE MyOpponent");
+//                    repaint();
+                }else if(arrayFieldTwo[i][j] == 0){
+//                    g.setColor(Color.blue);
+                    g.fillOval(i * recWidth + RIGHT + (width / 2) + recWidth / 2 - (recWidth / 3) / 2,
+                            j * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
+//                    System.out.println("OVAL MyOpponent");
+//                    repaint();
+                }
+            }
+        }
     }
+
+    private void drawStatusCellMyShips(Graphics g){
+        for(int i = 0; i < copyArrayFieldForBreakMyShips.length;i++){
+            for(int j = 0; j < copyArrayFieldForBreakMyShips[i].length;j++){
+                g.setColor(Color.black);
+                if(copyArrayFieldForBreakMyShips[i][j] == 1){
+                    g.drawLine(i * recWidth + RIGHT, j * recHeight + TOP,
+                            i * recWidth + recWidth + RIGHT, j * recHeight + recHeight + TOP );
+                    g.drawLine(i * recWidth + recWidth + RIGHT, j * recHeight + TOP,
+                            i * recWidth + RIGHT, j * recHeight + recHeight + TOP);
+                    System.out.println("LINE");
+//                    repaint();
+                }else if(copyArrayFieldForBreakMyShips[i][j] == 0){
+                    g.setColor(Color.blue);
+                    g.fillOval(i * recWidth + RIGHT + recWidth / 2 - (recWidth / 3) / 2,
+                            j * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
+                    System.out.println("OVAL");
+//                    repaint();
+                }
+            }
+        }
+    }
+//    public void setFlag(boolean flag)
+//    {
+//        this.flag = flag;
+//    }
 
     public void setShip(int[][] ship){
         arrayField = ship;
+        System.out.println("ЭТО В СЕКОНДПАНЕЛГЕЙМ========");
+        for(int i = 0; i < arrayField.length;i++){
+            for(int j = 0; j < arrayField[i].length;j++) {
+                System.out.print(arrayField[i][j] + " + ");
+            }
+            System.out.println();
+        }
         repaint();
     }
 
     public void setLoseMove(int loseMove){
+        System.out.println("ЗАШЕЛ В МЕТОД  setLoseMove " + this.loseMove );
         this.loseMove = loseMove;
-        if(loseMove == 3){
-            sendCordinatesShot(new EventObjectSendShot(new Object(),"lose"));
-        }
+        System.out.println("ЗАШЕЛ В МЕТОД  setLoseMove " + this.loseMove );
+        sendCordinatesShot(new EventObjectSendShot(new Object(),"lost"));
+        System.out.println("ОТПРАВИЛ ЛОСТ ТАЙМЕР В ПЕРВОЙ ПАНЕЛИ 0");
+        controlMove = false;
     }
 
     private void addMouseMotionListener(){
@@ -286,7 +412,9 @@ public class SecondGamePanel extends JPanel {
                 System.out.println("CLIKKKKKKKKKK");
                 if(controlMove) {
                     findCorCell(e.getX(), e.getY());
+//                    setTempCorXAndCorY(e.getX(), e.getY());
                     repaint();
+
                     System.out.println("CLIKKKKKKKKKKEEEEEDDDDDDD" + controlMove);
                 }
             }
@@ -306,6 +434,7 @@ public class SecondGamePanel extends JPanel {
                     timerStop();
                     flagControlTimer = false;
                     System.out.println(flagControlTimer + "EEEEEEEEEEEEEEEEEEEEEE");
+                    System.out.println(controlMove + "EEEEEEEEEEEEEEEEEEEEEE");
                     repaint();
                     System.out.println("Таймер СТОП" + flagControlTimer);
                     startNumberTimer = 0;
@@ -323,6 +452,11 @@ public class SecondGamePanel extends JPanel {
         timerWait.stop();
     }
 
+    private void setTempCorXAndCorY(int x, int y){
+        System.out.println("ЭТО В МЕТОДЕ setTempCorXAndCorY " + x + " +++ " + y);
+        tempMemberCorX = x;
+        tempMemberCorY = y;
+    }
     public void addEventListenerSendAnswerServerControlWord(EventListenerSendShot listener)
     {
         listenerList.add(EventListenerSendShot.class, listener);
@@ -341,7 +475,7 @@ public class SecondGamePanel extends JPanel {
         Object[] listeners = listenerList.getListenerList();
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == EventListenerSendShot.class) {
-                ((EventListenerSendShot) listeners[i + 1]).sendCoordinateShotOrAnswerServer(evt);
+                ((EventListenerSendShot) listeners[i + 1]).controlTimer(evt);
             }
         }
     }

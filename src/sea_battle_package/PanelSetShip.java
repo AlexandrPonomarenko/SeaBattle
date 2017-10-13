@@ -105,11 +105,11 @@ public class PanelSetShip extends JPanel {
 
         boolean flagX = false;
         boolean flagY = false;
-        System.out.println("x " + x + " " + startPoz + " " + length);
+//        System.out.println("x " + x + " " + startPoz + " " + length);
         if((x >= startPoz && x <= border)  && (y >= top && y <= height - bottom)) {
 
             for (int i = startPoz, i2 = 0; i <= length + startPoz; i += recWidth, i2++) {
-                System.out.println("i " + i + " " + x);
+//                System.out.println("i " + i + " " + x);
                 if (i + recWidth > x) {
                     indexX = i2;
                     flagX = true;
@@ -124,8 +124,8 @@ public class PanelSetShip extends JPanel {
                     break;
                 }
             }
-            System.out.println(indexX + " " + indexY);
-            System.out.println(x + " X ---- Y" + y);
+//            System.out.println(indexX + " " + indexY);
+//            System.out.println(x + " X ---- Y" + y);
             if (flagX && flagY) {
                 if(stateShipVerOrHor == 1) {
                     for (int i = indexX; i < indexX + stateShip; i++) {

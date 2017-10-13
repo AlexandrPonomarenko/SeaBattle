@@ -104,6 +104,7 @@ public class Client {
             }else if(commandWords.equals("ConnectUser")) {
                 writer.println(username + ":" + nameUser + ":" + commandWords);
                 username = nameUser;
+                splitNames(username);
                 writer.flush();
             }
         }
@@ -112,14 +113,43 @@ public class Client {
         }
     }
 
+    private void splitNames(String simple){
+        String tempArrayNames[] = simple.split(",");
+        username = tempArrayNames[0];
+        System.out.println("ЭТО В МЕТОДЕ splitNames " + username);
+    }
     public void sendArrayShip(int [][] arrayCoordinatesShip){
         try {
             writer.println(username + ":" + intInString(arrayCoordinatesShip) + ":" + "array");
-//            sendMassageCommand("Hello", "Create");
             writer.flush();
         } catch (Exception ex) {
             System.out.println("НЕ УДАЛОСЬ ОТПРАВИТЬ МАССИВ");
         }
+    }
+
+
+    public void sendCoordinatesShot(String coordinatesShot){
+        System.out.println("В МЕТОДЕ sendCoordinatesShot " + coordinatesShot);
+        if(!coordinatesShot.equals("clear")){
+            try {
+                System.out.println("ПЕРЕД ОТПРАВКОЙ СООРДИНАТОВ  " + username + ":" + coordinatesShot + ":" + "shot");
+                writer.println(username + ":" + coordinatesShot + ":" + "shot");
+                System.out.println(username + ":" + coordinatesShot + ":" + "shot");
+                writer.flush();
+            } catch (Exception ex) {
+                System.out.println("НЕ УДАЛОСЬ ОТПРАВИТЬ КООРДИНАТЫ");
+            }
+        }else {
+            System.out.println(coordinatesShot + "ПРИШЕЛ CLEAR");
+        }
+//        try {
+//            System.out.println("ПЕРЕД ОТПРАВКОЙ СООРДИНАТОВ  " + username + ":" + coordinatesShot + ":" + "shot");
+//            writer.println(username + ":" + coordinatesShot + ":" + "shot");
+//            System.out.println(username + ":" + coordinatesShot + ":" + "shot");
+//            writer.flush();
+//        } catch (Exception ex) {
+//            System.out.println("НЕ УДАЛОСЬ ОТПРАВИТЬ КООРДИНАТЫ");
+//        }
     }
 
     public void setNameUser(String nameUser){

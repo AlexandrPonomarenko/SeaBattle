@@ -70,7 +70,7 @@ public class StartPanel extends JPanel {
             @Override
             public void mouseMoved(MouseEvent e) {
 //                super.mouseMoved(e);
-                System.out.println("MAUSE" + e.getX()+ " ---  " + e.getY());
+//                System.out.println("MAUSE" + e.getX()+ " ---  " + e.getY());
                 if(checkArea(e.getX(),e.getY())){
                     flagColor = true;
                     repaint();

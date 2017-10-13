@@ -97,7 +97,8 @@ public class FirstGamePanel extends JPanel  {
                     startNumberTimer--;
                 }else{
                     startNumberTimer = 30;
-                    startNumberTimer = 0;
+//                    startNumberTimer = 0;
+                    System.out.println("ПЕРЕД ОТПРАВКОЙ ЛОСТМУВ");
                     loseYourMove(new EventObjectSendShot(3));
                     timerStop();
                 }
@@ -106,10 +107,15 @@ public class FirstGamePanel extends JPanel  {
     }
 
     public void setTimerWait(){
+//        System.out.println(" В МЕТОДЕ setTimerWait " + time);
+//        controlTimer = time;
+        timerStop();
+        System.out.println(" В МЕТОДЕ setTimerWait " + controlTimer);
         if(controlTimer == 1){
-            startNumberTimer = 0;
+            startNumberTimer = 30;
             timerStart();
         }else if(controlTimer == 0){
+            startNumberTimer = 30;
             timerStop();
         }
     }
@@ -127,6 +133,7 @@ public class FirstGamePanel extends JPanel  {
     }
 
     public void setControlTimer(int conTim){
+        System.out.println("ПРИХОД setControlTimer " + conTim);
         controlTimer = conTim;
         setTimerWait();
     }
@@ -173,7 +180,7 @@ public class FirstGamePanel extends JPanel  {
         Object[] listeners = listenerList.getListenerList();
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == EventListenerSendShot.class) {
-                ((EventListenerSendShot) listeners[i + 1]).sendCoordinateShotOrAnswerServer(evt);
+                ((EventListenerSendShot) listeners[i + 1]).controlTimer(evt);
             }
         }
     }

@@ -6,7 +6,7 @@ import java.util.EventObject;
  * Created by Alexandr on 02.10.2017.
  */
 public class EventObjectSendShot extends EventObject {
-    private String cordShot;
+    private String cordShot = "clear";
     private String answerServer;
     private String start;
     private int controlTimer;

@@ -332,7 +332,8 @@ public class Loader extends JFrame{
         sgp.addEventListenerSendAnswerServerControlWord(new EventListenerSendShot() {
             @Override
             public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
-
+                System.out.println("ЭТО В КЛАССЕ ЛОДЕР ПЕРЕД КЛАССОМ КЛИЕНТА ____________------------");
+                client.sendCoordinatesShot(eventObjectSendShot.getCordShot());
             }
 
             @Override
@@ -351,7 +352,6 @@ public class Loader extends JFrame{
         fgp.addEventListenerLoseYourMove(new EventListenerSendShot() {
             @Override
             public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
-
             }
 
             @Override

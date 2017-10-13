@@ -28,6 +28,7 @@ public class ConectionPanel extends JPanel{
         setPreferredSize(new Dimension(x, y));
         setLayout(new GridBagLayout());
         arrayListJButton = new ArrayList<>();
+        array = new int[10][10];
         nameTableUser = "";
         objectNameUser = new Object();
         eventListenerList = new EventListenerList();
@@ -158,11 +159,12 @@ public class ConectionPanel extends JPanel{
         System.out.println(nameTableUser + " NNNNAAAAAAMMMMEEEE");
     }
     public void setShip(int array[][]){
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = 0; j < array[i].length; j++) {
-//                System.out.println(array[i][j] + "ЭТО В МЕТОДЕ setShip КЛАСС ConectionPanel " + array.length + "-----" + array[0].length);
-//            }
-//        }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " + ");
+            }
+            System.out.println();
+        }
         this.array = array;
     }
 
