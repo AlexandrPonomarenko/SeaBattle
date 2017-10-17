@@ -9,6 +9,7 @@ public class EventObjectSendShot extends EventObject {
     private String cordShot = "clear";
     private String answerServer;
     private String start;
+    private String word;
     private int controlTimer;
     private int loseMove;
 
@@ -21,6 +22,7 @@ public class EventObjectSendShot extends EventObject {
         super(new EventObject(new Object()));
         answerServer = answer;
         start = answer;
+        word = answer;
     }
 
     public EventObjectSendShot(int controlTimer){
@@ -47,6 +49,10 @@ public class EventObjectSendShot extends EventObject {
 
     public int getLoseMove(){
         return loseMove;
+    }
+
+    public String getWord(){
+        return word;
     }
 
 

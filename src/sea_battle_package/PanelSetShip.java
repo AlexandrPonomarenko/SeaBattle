@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 
 /**
  * Created by Alexandr on 03.07.2017.
@@ -37,6 +38,8 @@ public class PanelSetShip extends JPanel {
     private int three = 0;
     private int four = 0;
 
+    private Sound sound;
+
     private EventListenerList eventListenerList;
 
     public PanelSetShip(int w, int h){
@@ -45,6 +48,7 @@ public class PanelSetShip extends JPanel {
         addMouseMotion();
         arrayField = new int[10][10];
         eventListenerList = new EventListenerList();
+        sound = new Sound(new File("E:\\www\\SeaBattle\\sound_Two.wav"));
     }
 
     public void paint(Graphics g) {
@@ -56,6 +60,10 @@ public class PanelSetShip extends JPanel {
         g.setColor(Color.black);
         drawSinglWeb(g, recWidth, recHeight, top, left);
         drawMouseCell(g);
+        if(!sound.isPlaying()){
+            System.out.println("TUT");
+            sound.play();
+        }
     }
 
     private void drawSinglWeb(Graphics g, int stepX, int stepY, int top, int left) {
@@ -307,6 +315,7 @@ public class PanelSetShip extends JPanel {
             turnOnAllMyEvent(new MyEventObject());
             mainFlag = true;
         }else if(name.equals("GO")) {
+            sound.stop();
             goMyEvent(new MyEventObject(arrayField));
             startClient(new EventObjectClient());
         }

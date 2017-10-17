@@ -9,6 +9,7 @@ public interface EventListenerSendShot extends EventListener {
     public void  sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot);
     public void  sendWordStart(EventObjectSendShot eventObjectSendShot);
     public void  controlTimer(EventObjectSendShot eventObjectSendShot);
+    public void  sendControlWord(EventObjectSendShot eventObjectSendShot);
 
 
 }

@@ -66,8 +66,14 @@ public class ConnectionTablePanel extends JPanel {
         });
     }
 
+    private void setDefaultPicture(){
+        this.removeAll();
+        this.revalidate();
+        repaint();
+    }
     public void setDataUser(String[][] dataUserArray){
         if(dataUserArray.length == 1 && dataUserArray[0][0].equals("default")){
+//            setDefaultPicture();
             defaultSettings();
             System.out.println(dataUser[0][0]+ " EEEEEEEEEEEEEEeee ");
             tableUser.setModel(new DefaultTableModel(dataUser, headers));

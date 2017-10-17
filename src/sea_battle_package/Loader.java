@@ -18,10 +18,10 @@ public class Loader extends JFrame{
     private ConectionPanel cp;
     private ConnectionTablePanel ctp;
     private Client client;
+    private EndPanel ep;
     private boolean flag;
-
-
     private StartPanel sp;
+
     public Loader() {
         setSize(width,height);
         mainPanel = new JPanel();
@@ -273,7 +273,7 @@ public class Loader extends JFrame{
         client.addEventListenerSendAnswerServerControlWord(new EventListenerSendShot() {
             @Override
             public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
-                sgp.setControlMoveAnswerFromServer(eventObjectSendShot.getAnswerServer());
+                sgp.setControlMoveAnswerFromServerTwo(eventObjectSendShot.getAnswerServer());
             }
 
             @Override
@@ -283,6 +283,11 @@ public class Loader extends JFrame{
 
             @Override
             public void controlTimer(EventObjectSendShot eventObjectSendShot) {
+
+            }
+
+            @Override
+            public void sendControlWord(EventObjectSendShot eventObjectSendShot) {
 
             }
         });
@@ -345,6 +350,12 @@ public class Loader extends JFrame{
             public void controlTimer(EventObjectSendShot eventObjectSendShot) {
                 fgp.setControlTimer(eventObjectSendShot.getControlTimer());
             }
+
+            @Override
+            public void sendControlWord(EventObjectSendShot eventObjectSendShot) {
+                setEndPanel();
+                ep.setWord(eventObjectSendShot.getWord());
+            }
         });
     }
 
@@ -362,6 +373,11 @@ public class Loader extends JFrame{
             @Override
             public void controlTimer(EventObjectSendShot eventObjectSendShot) {
                 sgp.setLoseMove(eventObjectSendShot.getLoseMove());
+            }
+
+            @Override
+            public void sendControlWord(EventObjectSendShot eventObjectSendShot) {
+
             }
         });
     }
@@ -397,6 +413,13 @@ public class Loader extends JFrame{
                 new Insets(0,0,0,0), 0,0));
     }
 
+    private void setEndPanel(){
+        clearMainPanel();
+        setSizeFrame(width, height);
+        ep = new EndPanel(width, height);
+        add(mainPanel,BorderLayout.CENTER);
+        mainPanel.add(ep);
+    }
     private void clearMainPanel(){
         mainPanel.removeAll();
         mainPanel.revalidate();

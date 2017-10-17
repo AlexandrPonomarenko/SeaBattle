@@ -16,6 +16,8 @@ public class SeaBattle {
                 JFrame frame = new Loader();
                 frame.setTitle("Sea Battle");
                 frame.setVisible(true);
+                frame.setResizable(false);
+                frame.setLocationRelativeTo(null);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         });

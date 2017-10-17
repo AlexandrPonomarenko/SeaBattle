@@ -6,6 +6,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +21,8 @@ public class ConectionPanel extends JPanel{
     public EventListenerList eventListenerList;
     private int array[][];
     private String nameTableUser;
-    Object objectNameUser;
+    private Object objectNameUser;
+    private Sound sound;
     private ArrayList<JButton> arrayListJButton;
 
 
@@ -42,7 +44,9 @@ public class ConectionPanel extends JPanel{
         setButtonPanel(connect,"Connect", 1);
 
         addFocusListener(textName);
-
+        sound = new Sound(new File("E:\\www\\SeaBattle\\sound_Three.wav"));
+        sound.play();
+        System.out.println("ПОСЛЕ ЗАПУСКА ПЕСНИ");
     }
 
     private void setButtonPanel(JButton button, String name, int weighty) {
@@ -85,6 +89,7 @@ public class ConectionPanel extends JPanel{
                     sendMyName(new EventObjectSendString(textName.getText()));
                     sendConnection(new EventObjectClient(e.getActionCommand().toString()));
                     sendArrayShip(new EventObjectClient(array));
+                    sound.stop();
                     System.out.println("В конце кнопки СОЗДАТЬ");
                 }else{
                     System.out.println("В начале кнопки ПОДКЛЮЧИТСЯ");
@@ -97,6 +102,7 @@ public class ConectionPanel extends JPanel{
                     sendMyName(new EventObjectSendString(textName.getText()));
                     sendConnection(new EventObjectClient("ConnectUser"));
                     sendArrayShip(new EventObjectClient(array));
+                    sound.stop();
                     System.out.println("В конце кнопки ПОДКЛЮЧИТСЯ");
                 }
             }
@@ -122,9 +128,15 @@ public class ConectionPanel extends JPanel{
             {
                 if(checkString(tf.getText())){
                     turnOnButton(arrayListJButton.get(0));
-                    turnOnButton(arrayListJButton.get(1));
+//                    turnOnButton(arrayListJButton.get(1));
                 }else{
                     turnOffButton(arrayListJButton.get(0));
+//                    turnOffButton(arrayListJButton.get(1));
+                }
+
+                if(!nameTableUser.equals("") && checkString(tf.getText())){
+                    turnOnButton(arrayListJButton.get(1));
+                }else{
                     turnOffButton(arrayListJButton.get(1));
                 }
             }
@@ -155,6 +167,7 @@ public class ConectionPanel extends JPanel{
         }else{
             nameTableUser = "";
             nameTableUser = selectName;
+            turnOnButton(arrayListJButton.get(1));
         }
         System.out.println(nameTableUser + " NNNNAAAAAAMMMMEEEE");
     }

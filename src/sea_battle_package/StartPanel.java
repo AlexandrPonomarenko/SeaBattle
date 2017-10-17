@@ -5,6 +5,7 @@ import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 /**
  * Created by Alexandr on 01.07.2017.
@@ -13,6 +14,7 @@ public class StartPanel extends JPanel {
     private int realWidth;
     private int realHeight;
     private boolean flagColor;
+    private Sound sound;
 
     EventListenerList eventListenerList;
 
@@ -21,6 +23,8 @@ public class StartPanel extends JPanel {
         eventListenerList = new EventListenerList();
         addMouseListener();
         addMouseClick();
+        sound = new Sound(new File("E:\\www\\SeaBattle\\sound_One.wav"));
+        sound.play(false);
     }
 
     public void paint(Graphics g) {
@@ -33,6 +37,10 @@ public class StartPanel extends JPanel {
         roundRect(g,realWidth / 2 - (realWidth / 100 * (15 - 1) + 5), realHeight / 2 - (realHeight / 100 * 9),
                 realWidth / 100 * (30 - 2) + 10, realHeight / 100 * (20 - 2));
         drawStringStart(g);
+        if(!sound.isPlaying()){
+            System.out.println("TUT");
+            sound.play();
+        }
     }
 
     private void roundRect(Graphics g , int x, int y, int width, int height){
@@ -88,6 +96,7 @@ public class StartPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
 //                super.mouseClicked(e);
                 if(checkArea(e.getX(), e.getY())){
+                    sound.stop();
                     fireLoad(new LoadEventListenerPanel(e));
                 }
             }
