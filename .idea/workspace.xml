@@ -5,39 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd9103e5-41ce-44e9-82af-9b4331c29f7a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel$2.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel$3.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConectionPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConnectionTablePanel$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConnectionTablePanel$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConnectionTablePanel.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/ConnectionTablePanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EventListenerSendShot.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EventListenerSendShot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EventObjectSendShot.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EventObjectSendShot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$10.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$7.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$8.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$9.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/Loader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/PanelSetShip$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/PanelSetShip$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/PanelSetShip$2.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/PanelSetShip$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/PanelSetShip.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/PanelSetShip.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SeaBattle$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SeaBattle$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SeaBattle.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SeaBattle.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel$2.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel$3.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/EndPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SecondGamePanel$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SecondGamePanel$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SecondGamePanel$2.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SecondGamePanel$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SecondGamePanel.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/SecondGamePanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/StartPanel$1.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/StartPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/StartPanel$2.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/StartPanel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/StartPanel.class" afterPath="$PROJECT_DIR$/out/production/SeaBattle/sea_battle_package/StartPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/EventListenerSendShot.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/EventListenerSendShot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/EventObjectSendShot.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/EventObjectSendShot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/Loader.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/Loader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/PanelSetShip.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/PanelSetShip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/SeaBattle.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/SeaBattle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/EndPanel.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/EndPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/SecondGamePanel.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/SecondGamePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sea_battle_package/StartPanel.java" afterPath="$PROJECT_DIR$/src/sea_battle_package/StartPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,10 +39,23 @@
       <file leaf-file-name="SecondGamePanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sea_battle_package/SecondGamePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="325" column="72" lean-forward="true" selection-start-line="325" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
+            <state relative-caret-position="196">
+              <caret line="482" column="137" lean-forward="false" selection-start-line="482" selection-start-column="137" selection-end-line="482" selection-end-column="137" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChangeCellAroundShips.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ChangeCellAroundShips.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="321" column="10" lean-forward="false" selection-start-line="321" selection-start-column="10" selection-end-line="321" selection-end-column="10" />
               <folding>
-                <marker date="1508266136632" expanded="true" signature="16215:16581" ph="..." />
+                <element signature="method#checkAroundOneShip#0;class#ChangeCellAroundShips#0" expanded="false" />
+                <element signature="method#checkTwoShipSide#0;class#ChangeCellAroundShips#0" expanded="false" />
+                <element signature="method#checkThreeShipSide#0;class#ChangeCellAroundShips#0" expanded="false" />
+                <element signature="method#checkFourShipSide#0;class#ChangeCellAroundShips#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -68,16 +64,9 @@
       <file leaf-file-name="EndPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sea_battle_package/EndPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
-              <folding>
-                <element signature="e#2585#2586#0" expanded="false" />
-                <element signature="e#2664#2665#0" expanded="false" />
-                <element signature="e#5957#5958#0" expanded="false" />
-                <element signature="e#5986#5987#0" expanded="false" />
-                <element signature="e#6016#6017#0" expanded="false" />
-                <element signature="e#6044#6045#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="1156">
+              <caret line="74" column="57" lean-forward="false" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,10 +75,8 @@
         <entry file="file://$PROJECT_DIR$/src/sea_battle_package/StartPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="25" column="35" lean-forward="false" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <caret line="25" column="59" lean-forward="false" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,10 +87,7 @@
             <state relative-caret-position="748">
               <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#mouseReleased#0;class#5321:6202" expanded="false" />
-                <element signature="e#7147#7148#0" expanded="false" />
-                <element signature="e#7217#7218#0" expanded="false" />
                 <element signature="method#setNextSheep#0;class#PanelSetShip#0" expanded="false" />
                 <element signature="method#countShip#0;class#PanelSetShip#0" expanded="false" />
                 <element signature="method#OverwriteVariables#0;class#PanelSetShip#0" expanded="false" />
@@ -114,8 +98,6 @@
                 <element signature="method#checkTwoShipH#0;class#PanelSetShip#0" expanded="false" />
                 <element signature="method#checkThreeShipH#0;class#PanelSetShip#0" expanded="false" />
                 <element signature="method#checkFourShipH#0;class#PanelSetShip#0" expanded="false" />
-                <element signature="e#17159#17160#0" expanded="false" />
-                <element signature="e#17224#17225#0" expanded="false" />
                 <element signature="method#removeMyEventListener#0;class#PanelSetShip#0" expanded="false" />
               </folding>
             </state>
@@ -125,9 +107,21 @@
       <file leaf-file-name="ConectionPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="169" column="48" lean-forward="false" selection-start-line="169" selection-start-column="48" selection-end-line="169" selection-end-column="48" />
-              <folding />
+            <state relative-caret-position="2839">
+              <caret line="184" column="19" lean-forward="false" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2170#2171#0" expanded="false" />
+                <element signature="e#2207#2208#0" expanded="false" />
+                <element signature="e#2252#2253#0" expanded="false" />
+                <element signature="e#2288#2289#0" expanded="false" />
+                <element signature="e#2382#4255#0" expanded="false" />
+                <element signature="e#4254#4255#0" expanded="false" />
+                <element signature="e#4343#4567#0" expanded="false" />
+                <element signature="e#4566#4567#0" expanded="false" />
+                <element signature="e#7002#7003#0" expanded="false" />
+                <element signature="e#7067#7068#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,10 +129,22 @@
       <file leaf-file-name="ConnectionTablePanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="78" selection-end-column="73" />
+            <state relative-caret-position="1479">
+              <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImagePanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ImagePanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="61" lean-forward="false" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,8 +153,8 @@
       <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sea_battle_package/Loader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="275" column="53" lean-forward="false" selection-start-line="275" selection-start-column="53" selection-end-line="275" selection-end-column="53" />
+            <state relative-caret-position="119">
+              <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="34" />
               <folding>
                 <element signature="method#getArray#0;class#2095:2580" expanded="false" />
                 <element signature="method#turnOn#0;class#2095:2580" expanded="false" />
@@ -179,34 +185,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sound.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sea_battle_package/Sound.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1272#1273#0" expanded="true" />
-                <element signature="e#1303#1304#0" expanded="true" />
-                <element signature="e#1381#1382#0" expanded="true" />
-                <element signature="e#1411#1412#0" expanded="true" />
-                <element signature="e#2042#2043#0" expanded="true" />
-                <element signature="e#2068#2069#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SeaBattle.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sea_battle_package/SeaBattle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -219,7 +197,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setNameTableUser</find>
       <find>changeName</find>
       <find>stringInArrayString</find>
       <find>setListenerClient</find>
@@ -249,6 +226,7 @@
       <find>arrayField</find>
       <find>tempCorX</find>
       <find>initializingArray</find>
+      <find>drawLineUnderAgain</find>
     </findStrings>
     <dirStrings>
       <dir>E:\www\SeaBattle\src\sea_battle_package</dir>
@@ -282,11 +260,15 @@
         <option value="$PROJECT_DIR$/src/sea_battle_package/SeaBattle.java" />
         <option value="$PROJECT_DIR$/src/sea_battle_package/Sound.java" />
         <option value="$PROJECT_DIR$/src/sea_battle_package/PanelSetShip.java" />
-        <option value="$PROJECT_DIR$/src/sea_battle_package/EndPanel.java" />
         <option value="$PROJECT_DIR$/src/sea_battle_package/StartPanel.java" />
-        <option value="$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java" />
-        <option value="$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java" />
         <option value="$PROJECT_DIR$/src/sea_battle_package/Loader.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/EndPanel.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/ImagePanel.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/ChangeCellAraundShips.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/CheackCellAroundShips.java" />
+        <option value="$PROJECT_DIR$/src/sea_battle_package/ChangeCellAroundShips.java" />
         <option value="$PROJECT_DIR$/src/sea_battle_package/SecondGamePanel.java" />
       </list>
     </option>
@@ -313,6 +295,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -347,7 +330,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,7 +337,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TestServerForSeaBattle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.SeaBattle">
     <configuration default="false" name="SeaBattle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -616,13 +598,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -634,7 +615,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2632375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22390318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -645,6 +626,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -658,7 +640,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -667,37 +649,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/EventListenerLoadPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="69" lean-forward="false" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/StartPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="106" column="22" lean-forward="false" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/MyEventObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/MyEventListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sea_battle_package/SeaBattle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -744,9 +695,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3842">
           <caret line="227" column="5" lean-forward="false" selection-start-line="227" selection-start-column="5" selection-end-line="227" selection-end-column="5" />
-          <folding>
-            <marker date="1508266136632" expanded="true" signature="16215:16581" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -765,10 +714,7 @@
         <state relative-caret-position="4029">
           <caret line="242" column="55" lean-forward="false" selection-start-line="242" selection-start-column="46" selection-end-line="242" selection-end-column="55" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#mouseReleased#0;class#5321:6202" expanded="false" />
-            <element signature="e#7147#7148#0" expanded="false" />
-            <element signature="e#7217#7218#0" expanded="false" />
             <element signature="method#setNextSheep#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#countShip#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#OverwriteVariables#0;class#PanelSetShip#0" expanded="false" />
@@ -779,8 +725,6 @@
             <element signature="method#checkTwoShipH#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#checkThreeShipH#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#checkFourShipH#0;class#PanelSetShip#0" expanded="false" />
-            <element signature="e#17159#17160#0" expanded="false" />
-            <element signature="e#17224#17225#0" expanded="false" />
             <element signature="method#removeMyEventListener#0;class#PanelSetShip#0" expanded="false" />
           </folding>
         </state>
@@ -804,9 +748,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
           <caret line="115" column="13" lean-forward="false" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,9 +798,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3842">
           <caret line="227" column="5" lean-forward="true" selection-start-line="227" selection-start-column="5" selection-end-line="227" selection-end-column="5" />
-          <folding>
-            <marker date="1508266136632" expanded="true" signature="16215:16581" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -877,10 +817,7 @@
         <state relative-caret-position="4743">
           <caret line="284" column="55" lean-forward="true" selection-start-line="284" selection-start-column="12" selection-end-line="284" selection-end-column="55" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#mouseReleased#0;class#5321:6202" expanded="false" />
-            <element signature="e#7147#7148#0" expanded="false" />
-            <element signature="e#7217#7218#0" expanded="false" />
             <element signature="method#setNextSheep#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#countShip#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#OverwriteVariables#0;class#PanelSetShip#0" expanded="false" />
@@ -891,8 +828,6 @@
             <element signature="method#checkTwoShipH#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#checkThreeShipH#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#checkFourShipH#0;class#PanelSetShip#0" expanded="false" />
-            <element signature="e#17159#17160#0" expanded="false" />
-            <element signature="e#17224#17225#0" expanded="false" />
             <element signature="method#removeMyEventListener#0;class#PanelSetShip#0" expanded="false" />
           </folding>
         </state>
@@ -916,9 +851,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
           <caret line="115" column="13" lean-forward="true" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -956,9 +889,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1100,10 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#212#213#0" expanded="false" />
-            <element signature="e#241#242#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1122,20 +1049,20 @@
         <state relative-caret-position="272">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1272#1273#0" expanded="true" />
-            <element signature="e#1303#1304#0" expanded="true" />
-            <element signature="e#1381#1382#0" expanded="true" />
-            <element signature="e#1411#1412#0" expanded="true" />
-            <element signature="e#2042#2043#0" expanded="true" />
-            <element signature="e#2068#2069#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1272#1273#0" expanded="false" />
+            <element signature="e#1303#1304#0" expanded="false" />
+            <element signature="e#1381#1382#0" expanded="false" />
+            <element signature="e#1411#1412#0" expanded="false" />
+            <element signature="e#2042#2043#0" expanded="false" />
+            <element signature="e#2068#2069#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sea_battle_package/SeaBattle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="221">
           <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding />
         </state>
@@ -1146,10 +1073,7 @@
         <state relative-caret-position="748">
           <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#mouseReleased#0;class#5321:6202" expanded="false" />
-            <element signature="e#7147#7148#0" expanded="false" />
-            <element signature="e#7217#7218#0" expanded="false" />
             <element signature="method#setNextSheep#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#countShip#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#OverwriteVariables#0;class#PanelSetShip#0" expanded="false" />
@@ -1160,8 +1084,6 @@
             <element signature="method#checkTwoShipH#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#checkThreeShipH#0;class#PanelSetShip#0" expanded="false" />
             <element signature="method#checkFourShipH#0;class#PanelSetShip#0" expanded="false" />
-            <element signature="e#17159#17160#0" expanded="false" />
-            <element signature="e#17224#17225#0" expanded="false" />
             <element signature="method#removeMyEventListener#0;class#PanelSetShip#0" expanded="false" />
           </folding>
         </state>
@@ -1175,53 +1097,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/EndPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
-          <folding>
-            <element signature="e#2585#2586#0" expanded="false" />
-            <element signature="e#2664#2665#0" expanded="false" />
-            <element signature="e#5957#5958#0" expanded="false" />
-            <element signature="e#5986#5987#0" expanded="false" />
-            <element signature="e#6016#6017#0" expanded="false" />
-            <element signature="e#6044#6045#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/StartPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="25" column="35" lean-forward="false" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="78" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="169" column="48" lean-forward="false" selection-start-line="169" selection-start-column="48" selection-end-line="169" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sea_battle_package/Loader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="275" column="53" lean-forward="false" selection-start-line="275" selection-start-column="53" selection-end-line="275" selection-end-column="53" />
+        <state relative-caret-position="119">
+          <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="34" />
           <folding>
             <element signature="method#getArray#0;class#2095:2580" expanded="false" />
             <element signature="method#turnOn#0;class#2095:2580" expanded="false" />
@@ -1241,13 +1120,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/EndPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="74" column="57" lean-forward="false" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ConectionPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2839">
+          <caret line="184" column="19" lean-forward="false" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2170#2171#0" expanded="false" />
+            <element signature="e#2207#2208#0" expanded="false" />
+            <element signature="e#2252#2253#0" expanded="false" />
+            <element signature="e#2288#2289#0" expanded="false" />
+            <element signature="e#2382#4255#0" expanded="false" />
+            <element signature="e#4254#4255#0" expanded="false" />
+            <element signature="e#4343#4567#0" expanded="false" />
+            <element signature="e#4566#4567#0" expanded="false" />
+            <element signature="e#7002#7003#0" expanded="false" />
+            <element signature="e#7067#7068#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ConnectionTablePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1479">
+          <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/StartPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" column="59" lean-forward="false" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ImagePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="61" lean-forward="false" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ChangeCellAraundShips.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/CheackCellAroundShips.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sea_battle_package/ChangeCellAroundShips.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="321" column="10" lean-forward="false" selection-start-line="321" selection-start-column="10" selection-end-line="321" selection-end-column="10" />
+          <folding>
+            <element signature="method#checkAroundOneShip#0;class#ChangeCellAroundShips#0" expanded="false" />
+            <element signature="method#checkTwoShipSide#0;class#ChangeCellAroundShips#0" expanded="false" />
+            <element signature="method#checkThreeShipSide#0;class#ChangeCellAroundShips#0" expanded="false" />
+            <element signature="method#checkFourShipSide#0;class#ChangeCellAroundShips#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sea_battle_package/SecondGamePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="325" column="72" lean-forward="true" selection-start-line="325" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
-          <folding>
-            <marker date="1508266136632" expanded="true" signature="16215:16581" ph="..." />
-          </folding>
+        <state relative-caret-position="196">
+          <caret line="482" column="137" lean-forward="false" selection-start-line="482" selection-start-column="137" selection-end-line="482" selection-end-column="137" />
+          <folding />
         </state>
       </provider>
     </entry>

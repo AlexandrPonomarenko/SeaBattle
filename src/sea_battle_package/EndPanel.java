@@ -18,7 +18,6 @@ public class EndPanel extends JPanel {
     private boolean flagMove = true;
     private Font font;
     private Timer timer;
-    //    private int startNumberTimer = -100;
     private int endTimer;
     private int globalX = -100;
     private int globalY;
@@ -73,7 +72,7 @@ public class EndPanel extends JPanel {
     }
 
     private void drawLineUnderAgain(Graphics g){
-        g.drawLine(width / 2 - 70,  height - height / 3 + 30,
+        g.drawLine(width / 2 - 70,  (height - height / 3) + 30,
                 width / 2 - 70 + width / 100 * (20 - 2) + 10, height - height / 3 - 42 + height / 100 * (20 - 2));
     }
 

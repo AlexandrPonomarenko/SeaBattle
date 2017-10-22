@@ -7,6 +7,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Alexandr on 24.07.2017.
@@ -21,11 +22,15 @@ public class ConnectionTablePanel extends JPanel {
     private String [][] dataUser;
     private ListSelectionModel selModel;
     private String changeName = "";
+    private ImagePanel imagePanel;
+    private int widht, height;
     private String [][] lastname;
 
 
     public ConnectionTablePanel(int x, int y){
-        setPreferredSize(new Dimension(x, y));
+        widht = x;
+        height = y;
+        setPreferredSize(new Dimension(widht, height));
         setLayout(new BorderLayout());
         eventListenerList = new EventListenerList();
         headers = new String[]{"Name", "CreateGame", "IP"};
@@ -66,17 +71,33 @@ public class ConnectionTablePanel extends JPanel {
         });
     }
 
-    private void setDefaultPicture(){
+//    public void paint(Graphics g){
+////        g.drawImage(i.getImage(),0,0,null);
+//        loadImage(g);
+//
+//    }
+    private void setDefaultPanel(){
         this.removeAll();
         this.revalidate();
+        imagePanel = new ImagePanel(widht,height);
+        add(imagePanel);
         repaint();
     }
+
+//    private void loadImage(Graphics g){
+//        i = new ImageIcon("\\SeaBattle\\src\\sea_battle_package\\no_Created_Games.png");
+//        g.drawImage(i.getImage(),0,0,null);
+////        i.getImage();
+//    }
     public void setDataUser(String[][] dataUserArray){
         if(dataUserArray.length == 1 && dataUserArray[0][0].equals("default")){
 //            setDefaultPicture();
-            defaultSettings();
+//            defaultSettings();
+//            loadImage();
+//            setDefaultPicture();
+            setDefaultPanel();
             System.out.println(dataUser[0][0]+ " EEEEEEEEEEEEEEeee ");
-            tableUser.setModel(new DefaultTableModel(dataUser, headers));
+//            tableUser.setModel(new DefaultTableModel(dataUser, headers));
         }else if(dataUserArray.length > 0 && !dataUserArray[0][0].equals("default")){
             dataUser = dataUserArray;
             System.out.println(dataUser.length + " TTTTTTTTTTTTTTT " + dataUser[0].length);

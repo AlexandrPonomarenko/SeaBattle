@@ -146,9 +146,17 @@ public class ConectionPanel extends JPanel{
             {
                 if(checkString(tf.getText())){
                     turnOnButton(arrayListJButton.get(0));
-                    turnOnButton(arrayListJButton.get(1));
+//                    turnOnButton(arrayListJButton.get(1));
                 }else{
                     turnOffButton(arrayListJButton.get(0));
+//                    turnOffButton(arrayListJButton.get(1));
+                }
+
+                if(checkString(tf.getText()) && !nameTableUser.equals("")){
+//                    turnOnButton(arrayListJButton.get(0));
+                    turnOnButton(arrayListJButton.get(1));
+                }else{
+//                    turnOffButton(arrayListJButton.get(0));
                     turnOffButton(arrayListJButton.get(1));
                 }
             }
