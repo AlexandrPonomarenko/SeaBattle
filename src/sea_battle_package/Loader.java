@@ -273,7 +273,7 @@ public class Loader extends JFrame{
         client.addEventListenerSendAnswerServerControlWord(new EventListenerSendShot() {
             @Override
             public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
-                sgp.setControlMoveAnswerFromServerTwo(eventObjectSendShot.getAnswerServer());
+                sgp.setControlMoveAnswerFromServer(eventObjectSendShot.getAnswerServer());
             }
 
             @Override
@@ -355,6 +355,7 @@ public class Loader extends JFrame{
             public void sendControlWord(EventObjectSendShot eventObjectSendShot) {
                 setEndPanel();
                 ep.setWord(eventObjectSendShot.getWord());
+                setListenerEndPanel();
             }
         });
     }
@@ -378,6 +379,16 @@ public class Loader extends JFrame{
             @Override
             public void sendControlWord(EventObjectSendShot eventObjectSendShot) {
 
+            }
+        });
+    }
+
+    private void setListenerEndPanel(){
+        ep.addEventListenerAgainGame(new AgainGame() {
+            @Override
+            public void againGame(AgainGameCl againGameCl) {
+                clearMainPanel();
+                setStartPanel();
             }
         });
     }

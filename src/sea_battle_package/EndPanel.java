@@ -1,6 +1,7 @@
 package sea_battle_package;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +25,12 @@ public class EndPanel extends JPanel {
     private String word;
     private Sound sound;
 
+    private EventListenerList listenerList;
+
 
     public EndPanel(int x, int y){
         setSize(x,y);
+        listenerList = new EventListenerList();
         setFontParam(100);
         setGlobalXAndGlobalY(width / 2 - font.getSize(), height / 2 + 25);
         endTimer = x / 2 - font.getSize();
@@ -116,6 +120,7 @@ public class EndPanel extends JPanel {
                         flagMove = true;
                         timerStart();
                         sound.stop();
+                        againGame(new AgainGameCl(e));
 //                        flagMove = false;
 //                    fireLoad(new LoadEventListenerPanel(e));
                     }
@@ -175,5 +180,18 @@ public class EndPanel extends JPanel {
     }
     private void timerStop(){
         timer.stop();
+    }
+
+    public void addEventListenerAgainGame(AgainGame listener) {
+        listenerList.add(AgainGame.class, listener);
+    }
+
+    private void againGame(AgainGameCl evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == AgainGame.class) {
+                ((AgainGame) listeners[i + 1]).againGame(evt);
+            }
+        }
     }
 }

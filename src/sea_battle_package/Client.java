@@ -130,6 +130,11 @@ public class Client {
 
     public void sendCoordinatesShot(String coordinatesShot){
         System.out.println("В МЕТОДЕ sendCoordinatesShot " + coordinatesShot);
+        if(coordinatesShot.equals("bye")){
+            sendDisconnect();
+            dissconnect();
+            return;
+        }
         if(!coordinatesShot.equals("clear")){
             try {
                 System.out.println("ПЕРЕД ОТПРАВКОЙ СООРДИНАТОВ  " + username + ":" + coordinatesShot + ":" + "shot");
@@ -160,7 +165,7 @@ public class Client {
         nameUserFromTableToConnect = nameUser;
         System.out.println(nameUserFromTableToConnect + "ЭТО В КЛИЕНТЕ");
     }
-//    private void
+
     private String intInString(int[][] arrayCoordinatesShip){
         String arrayCoordinatesShipToString = "";
         for(int i = 0; i < arrayCoordinatesShip.length;i++){
@@ -193,6 +198,8 @@ public class Client {
 //            panel2.addMessage("Соединение отключено.\n");
             System.out.println("Соединение отключено.\n");
             sock.close();
+            reader.close();
+            writer.close();
         } catch(Exception ex) {
             System.out.println("Не удалось отклчиться. \n");
 //            panel2.addMessage("Не удалось отклчиться. \n");

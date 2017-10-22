@@ -127,10 +127,6 @@ public class SecondGamePanel extends JPanel {
             setCor(width / 2 + LEFT, width - RIGHT, width - RIGHT, corX, corY, arrayFieldTwo);
             //flagRec = false;
         }
-//      else {
-//            setCor(LEFT,width / 2 - RIGHT, (width / 2) - LEFT - RIGHT, corX, corY, arrayField);
-//            //flagRec = true;
-//        }
     }
 
     private void setCor(int startPoz, int border, int length, int corX, int corY, int array[][]){
@@ -199,20 +195,6 @@ public class SecondGamePanel extends JPanel {
             System.out.println("BLOCCCCCCCCCCCCCCCCCCCCCCCC ");
         }else if(arrayFieldTwo[x][y] == 1){drawFlag = false;}
     }
-//    private void drawShot(Graphics g){
-////        System.out.println("++++++++++++++++++++++++++++++++++++++++++___--------------------------------------------");
-//        g.setColor(Color.BLUE);
-//        if(tempCorX >= 0 && tempCorY >= 0){
-//            if (drawFlag) {
-////                System.out.println("++++++++++++++++++++++++++++++++++++++++++");
-//                g.fillOval(tempCorX * recWidth + RIGHT + (width / 2) + recWidth / 2 - (recWidth / 3) / 2,
-//                        tempCorY * recHeight + TOP + recHeight / 2 - (recWidth / 3) / 2, recWidth / 3, recWidth / 3);
-//            } else {
-//                g.drawLine(tempCorX, tempCorY,tempCorX + recWidth, tempCorY + recHeight );
-//                g.drawLine(tempCorX + recWidth, tempCorY + recHeight, tempCorX, tempCorY);
-//            }
-//        }
-//    }
 
     private void drawFatLine(Graphics g){
         g.setColor(new Color(128, 0, 128, 128));
@@ -270,7 +252,7 @@ public class SecondGamePanel extends JPanel {
         System.out.println(startGame + "ЭТО В МЕТОДЕ УСТАНОВКИ СЛОВА СТАРТ setWordStart");
     }
 
-    public void setControlMoveAnswerFromServerTwo(String answerFromServer){
+    public void setControlMoveAnswerFromServer(String answerFromServer){
         repaint();
         System.out.println("ПРИХОД ОТ СЕРВЕРА " + answerFromServer);
         String tempArr[] = answerFromServer.split(",");
@@ -313,6 +295,7 @@ public class SecondGamePanel extends JPanel {
                         ccas.checkTwoShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         sound.stop();
                         sendControlWord(new EventObjectSendShot("WIN"));
+                        sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
 //                        repaint();
                     }else if(tempArr[2].equals("three")){
                         System.out.println("ЗАШЕЛ " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
@@ -324,6 +307,7 @@ public class SecondGamePanel extends JPanel {
                         ccas.checkThreeShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         sound.stop();
                         sendControlWord(new EventObjectSendShot("WIN"));
+                        sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
 //                        repaint();
                     }else if(tempArr[2].equals("four")){
                         System.out.println("ЗАШЕЛ FOUR " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
@@ -335,6 +319,7 @@ public class SecondGamePanel extends JPanel {
                         ccas.checkFourShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         sound.stop();
                         sendControlWord(new EventObjectSendShot("WIN"));
+                        sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
                     }else{
                         System.out.println("ЗАШЕЛ " + tempArr[1]);
                         sound.stop();
@@ -346,6 +331,7 @@ public class SecondGamePanel extends JPanel {
                         sendControlTimerInFirsPanel(new EventObjectSendShot(0));
                         System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ПОБЕДААААА!!!!");
                         sendControlWord(new EventObjectSendShot("WIN"));
+                        sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
                     }
                 }
             }else if(tempArr[2].equals("true")){
@@ -411,6 +397,7 @@ public class SecondGamePanel extends JPanel {
                     ccas.checkTwoShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
+                    sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
 //                    repaint();
                 }else if(tempArr[4].equals("three")){
                     System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
@@ -422,6 +409,7 @@ public class SecondGamePanel extends JPanel {
                     ccas.checkThreeShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
+                    sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
 //                    repaint();
                 }else if(tempArr[4].equals("four")){
                     System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
@@ -433,6 +421,7 @@ public class SecondGamePanel extends JPanel {
                     ccas.checkFourShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
+                    sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
 //                    repaint();
                 }else{
                     controlMove = false;
@@ -444,6 +433,7 @@ public class SecondGamePanel extends JPanel {
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
                     System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ВЫ проиграли");
+                    sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
                 }
             }else if(tempArr[4].equals("false")){
                 System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + "ОН ПОПАЛ И УБИЛ");
@@ -486,69 +476,69 @@ public class SecondGamePanel extends JPanel {
             }
         }
     }
-    public void setControlMoveAnswerFromServer(String answerFromServer){
-        repaint();
-        System.out.println("ПРИХОД ОТ СЕРВЕРА " + answerFromServer);
-        if(answerFromServer.equals("move")){
-            controlMove = true;
-            sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-            return;
-        }else if(answerFromServer.equals("skip move")){
-            controlMove = false;
-            sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-            return;
-        }
-
-        if(answerFromServer.length() > 5) {
-            String tempArr[] = answerFromServer.split(",");
-            System.out.println(tempArr[0] + " - " + tempArr[1] + " - " + tempArr[2]);
-            if (tempArr[2].equals("true")) {
-                controlMove = true;
-                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 0;
-                repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ТРУ С ДАННЫМИ ОН НЕ ПОПАЛ");
-            } else if (tempArr[2].equals("false")) {
-                controlMove = false;
-                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 1;
-                repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ФАЛСЕ С ДАННЫМИ ОН ПОПАЛ");
-            }else if(tempArr[2].equals("LOSE")){
-                controlMove = false;
-                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 1;
-                repaint();
-                sendControlWord(new EventObjectSendShot("LOSE"));
-                sound.stop();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ВЫ проиграли");
-            }
-        }else if(answerFromServer.length() <= 5){
-            System.out.println("ЗАШЕЛ answerFromServer.length() <= 5");
-            if (answerFromServer.equals("true")) {
-                controlMove = true;
-                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                System.out.println("перед установкой 1 answerFromServer.length() <= 5");
-                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-                repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer answerFromServer.length() <= 5");
-            } else if (answerFromServer.equals("false")) {
-                controlMove = false;
-                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 0;
-                repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer answerFromServer.length() <= 5");
-            }else if(answerFromServer.equals("WIN")){
-                sound.stop();
-                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-                repaint();
-                controlMove = false;
-                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ПОБЕДААААА!!!!");
-                sendControlWord(new EventObjectSendShot("WIN"));
-            }
-        }
-    }
+//    public void setControlMoveAnswerFromServerTwo(String answerFromServer){
+//        repaint();
+//        System.out.println("ПРИХОД ОТ СЕРВЕРА " + answerFromServer);
+//        if(answerFromServer.equals("move")){
+//            controlMove = true;
+//            sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+//            return;
+//        }else if(answerFromServer.equals("skip move")){
+//            controlMove = false;
+//            sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+//            return;
+//        }
+//
+//        if(answerFromServer.length() > 5) {
+//            String tempArr[] = answerFromServer.split(",");
+//            System.out.println(tempArr[0] + " - " + tempArr[1] + " - " + tempArr[2]);
+//            if (tempArr[2].equals("true")) {
+//                controlMove = true;
+//                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+//                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 0;
+//                repaint();
+//                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ТРУ С ДАННЫМИ ОН НЕ ПОПАЛ");
+//            } else if (tempArr[2].equals("false")) {
+//                controlMove = false;
+//                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+//                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 1;
+//                repaint();
+//                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ФАЛСЕ С ДАННЫМИ ОН ПОПАЛ");
+//            }else if(tempArr[2].equals("LOSE")){
+//                controlMove = false;
+//                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+//                copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[0])][Integer.parseInt(tempArr[1])] = 1;
+//                repaint();
+//                sendControlWord(new EventObjectSendShot("LOSE"));
+//                sound.stop();
+//                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ВЫ проиграли");
+//            }
+//        }else if(answerFromServer.length() <= 5){
+//            System.out.println("ЗАШЕЛ answerFromServer.length() <= 5");
+//            if (answerFromServer.equals("true")) {
+//                controlMove = true;
+//                sendControlTimerInFirsPanel(new EventObjectSendShot(1));
+//                System.out.println("перед установкой 1 answerFromServer.length() <= 5");
+//                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
+//                repaint();
+//                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer answerFromServer.length() <= 5");
+//            } else if (answerFromServer.equals("false")) {
+//                controlMove = false;
+//                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+//                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 0;
+//                repaint();
+//                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer answerFromServer.length() <= 5");
+//            }else if(answerFromServer.equals("WIN")){
+//                sound.stop();
+//                arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
+//                repaint();
+//                controlMove = false;
+//                sendControlTimerInFirsPanel(new EventObjectSendShot(0));
+//                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ПОБЕДААААА!!!!");
+//                sendControlWord(new EventObjectSendShot("WIN"));
+//            }
+//        }
+//    }
     public void setTimerWait(){
         if(!flag){
             startNumberTimer = 0;
@@ -557,576 +547,6 @@ public class SecondGamePanel extends JPanel {
         }
     }
 
-//    private void checkAroundOneShip( int[][] array, int corX, int corY){
-//        for (int i = 0; i < 8; i++){
-//            if(i == 0){
-//                if(corY - 1 >= 0){
-//                    array[corX][corY - 1] = 0;
-//                }
-//            }else if(i == 1){
-//                if(corY - 1 >= 0 && corX + 1 <= array.length - 1){
-//                    array[corX + 1][corY - 1] = 0;
-//                }
-//            }else if(i == 2){
-//                if(corX + 1 <= array.length - 1){
-//                    array[corX + 1][corY] = 0;
-//                }
-//            }else if(i == 3){
-//                if(corX + 1 <= array.length - 1 && corY + 1 <= array.length - 1){
-//                    array[corX + 1][corY + 1] = 0;
-//                }
-//            }else if(i == 4){
-//                if(corY + 1 <= array.length - 1){
-//                    array[corX][corY + 1] = 0;
-//                }
-//            }else if(i == 5){
-//                if(corX - 1 >= 0 && corY + 1 <= array.length - 1){
-//                    array[corX - 1][corY + 1] = 0;
-//                }
-//            }else if(i == 6){
-//                if(corX - 1 >= 0){
-//                    array[corX - 1][corY] = 0;
-//                }
-//            }else if(i == 7){
-//                if(corX - 1 >= 0 && corY  - 1 >=0){
-//                    array[corX - 1][corY - 1] = 0;
-//                }
-//            }
-//        }
-//    }
-//
-//    private void checkTwoShipSide(int array[][], int x, int y, String side){
-//        if(side.equals("top")){
-//            for(int i = 0; i < 10; i++){
-//                if(i == 0){
-//                    if(y - 2 >= 0)array[x][y - 2] = 0; // double top
-//                }else if(i == 1){
-//                    if(y - 2 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 2] = 0; // double top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0;// top right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0;// right
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 1][y + 1] = 0;// bottom right
-//                }else if(i == 5){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0;// bottom
-//                }else if(i == 6){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 7){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 8){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y - 2 >= 0)array[x - 1][y - 2] = 0; // // left double top
-//                }
-//            }
-//        }else if(side.equals("right")){
-//            for(int i = 0; i < 10; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 2 <= array.length - 1)array[x + 2][y - 1] = 0; // top double right
-//                }else if(i == 3){
-//                    if(x + 2 <= array.length - 1)array[x + 2][y] = 0; // double right
-//                }else if(i == 4){
-//                    if(x + 2 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 2][y + 1] = 0; // double right bottom
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 6){
-//                    if(y + 1 <= array.length - 1)array[x ][y + 1] = 0; // bottom
-//                }else if(i == 7){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 8){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("bottom")){
-//            for(int i = 0; i < 10; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1 && y + 2 <= array.length - 1) array[x + 1][y + 2] = 0; // double bottom right
-//                }else if(i == 5){
-//                    if(y + 2 <= array.length - 1)array[x][y + 2] = 0; // double bottom
-//                }else if(i == 6){
-//                    if( x - 1 >= 0 && y + 2 <= array.length - 1)array[x - 1][y + 2] = 0; // double bottom left
-//                }else if(i == 7){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 8){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("left")){
-//            for(int i = 0; i < 10; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 4){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 5){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 6){
-//                    if( x - 2 >= 0 && y + 1 <= array.length - 1)array[x - 2][y + 1] = 0; // double left bottom
-//                }else if(i == 7){
-//                    if(x - 2 >= 0)array[x - 2][y] = 0; // double left
-//                }else if(i == 8){
-//                    if(x - 2 >= 0 && y - 1 >= 0)array[x - 2][y - 1] = 0; // double left top
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }
-//    }
-//
-//    private void checkThreeShipSide(int array[][], int x, int y, String side){
-//        if(side.equals("top")){
-//            for(int i = 0; i < 12; i++){
-//                if(i == 0){
-//                    if(y - 3 >= 0)array[x][y - 3] = 0; // triple top
-//                }else if(i == 1){
-//                    if(y - 3 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 3] = 0; // triple top right
-//                }else if(i == 2){
-//                    if(y - 2 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 2] = 0;// double top right
-//                }else if(i == 3){
-//                    if(y - 1 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0;// top right
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1) array[x + 1][y] = 0;// right
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 && y + 1 <= array.length - 1)array[x + 1][y + 1] = 0;// right bottom
-//                }else if(i == 6){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 7){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 8){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }else if(i == 10){
-//                    if(x - 1 >= 0 && y - 2 >= 0)array[x - 1][y - 2] = 0; // left double top
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 3 >= 0)array[x - 1][y - 3] = 0; // left triple top
-//                }
-//            }
-//        }else if(side.equals("right")){
-//            for(int i = 0; i < 12; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 2 <= array.length - 1)array[x + 2][y - 1] = 0; // top double right
-//                }else if(i == 3){
-//                    if(y - 1 >=0 && x + 3 <= array.length - 1)array[x + 3][y - 1] = 0; // top triple right
-//                }else if(i == 4){
-//                    if(x + 3 <= array.length - 1)array[x + 3][y] = 0; // triple right
-//                }else if(i == 5){
-//                    if(x + 3 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 3][y + 1] = 0; // triple right bottom
-//                }else if(i == 6){
-//                    if(x + 2 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 2][y + 1] = 0; // double right bottom
-//                }else if(i == 7){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                } else if(i == 8){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 10){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("bottom")){
-//            for(int i = 0; i < 12; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1 && y + 2 <= array.length - 1) array[x + 1][y + 2] = 0; // double bottom right
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 && y + 3 <= array.length - 1) array[x + 1][y + 3] = 0; // triple bottom right
-//                }else if(i == 6){
-//                    if(y + 3 <= array.length - 1)array[x][y + 3] = 0; // triple bottom
-//                }else if(i == 7){
-//                    if( x - 1 >= 0 && y + 3 <= array.length - 1)array[x - 1][y + 3] = 0; // triple bottom left
-//                }else if(i == 8){
-//                    if( x - 1 >= 0 && y + 2 <= array.length - 1)array[x - 1][y + 2] = 0; // double bottom left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 10){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("left")){
-//            for(int i = 0; i < 12; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 4){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 5){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 6){
-//                    if( x - 2 >= 0 && y + 1 <= array.length - 1)array[x - 2][y + 1] = 0; // double left bottom
-//                }else if(i == 7){
-//                    if( x - 3 >= 0 && y + 1 <= array.length - 1)array[x - 3][y + 1] = 0; // triple left bottom
-//                }else if(i == 8){
-//                    if(x - 3 >= 0)array[x - 3][y] = 0; // triple left
-//                }else if(i == 9){
-//                    if(x - 3 >= 0 && y - 1 >= 0)array[x - 3][y - 1] = 0; // triple left top
-//                }else if(i == 10){
-//                    if(x - 2 >= 0 && y - 1 >= 0)array[x - 2][y - 1] = 0; // double left top
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("tb")){
-//            for(int i = 0; i < 12; i++){
-//                if(i == 0){
-//                    if(y - 2 >= 0)array[x][y - 2] = 0; // double top
-//                }else if(i == 1){
-//                    if(y - 2 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 2] = 0; // double top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0;// top right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0;// right
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 1][y + 1] = 0;// bottom right
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 && y + 2 <= array.length - 1) array[x + 1][y + 2] = 0;// double bottom right
-//                }else if(i == 6){
-//                    if(y + 2 <= array.length - 1)array[x][y + 2] = 0;// double bottom
-//                }else if(i == 7){
-//                    if(x - 1 >= 0 && y + 2 <= array.length - 1)array[x - 1][y + 2] = 0; // double bottom left
-//                }else if(i == 8){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 10){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 2 >= 0)array[x - 1][y - 2] = 0; // // left double top
-//                }
-//            }
-//        }else if(side.equals("lr")){
-//            for(int i = 0; i < 12; i++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 2 <= array.length - 1)array[x + 2][y - 1] = 0; // top double right
-//                }else if(i == 3){
-//                    if(x + 2 <= array.length - 1)array[x + 2][y] = 0; // double right
-//                }else if(i == 4){
-//                    if(x + 2 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 2][y + 1] = 0; // double right bottom
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 6){
-//                    if(y + 1 <= array.length - 1)array[x ][y + 1] = 0; // bottom
-//                }else if(i == 7){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 8){
-//                    if(x - 2 >= 0 && y + 1 <= array.length - 1)array[x - 2][y + 1] = 0; // bottom  double left
-//                }else if(i == 9){
-//                    if(x - 2 >= 0)array[x - 2][y] = 0; //  double left
-//                }else if(i == 10){
-//                    if(x - 2 >= 0 && y - 1 >= 0)array[x - 2][y - 1] = 0; // double left top
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }
-//    }
-//
-//    private void checkFourShipSide(int array[][], int x, int y, String side){
-//        if(side.equals("top")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 4 >= 0)array[x][y - 4] = 0; // quadruple top
-//                }else if(i == 1){
-//                    if(y - 4 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 4] = 0; // quadruple top right
-//                }else if(i == 2){
-//                    if(y - 3 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 3] = 0;// triple top right
-//                }else if(i == 3){
-//                    if(y - 2 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 2] = 0;// double top right
-//                }else if(i == 4){
-//                    if(y - 1 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0;// top right
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1) array[x + 1][y] = 0;// right
-//                }else if(i == 6){
-//                    if(x + 1 <= array.length - 1 && y + 1 <= array.length - 1)array[x + 1][y + 1] = 0;// right bottom
-//                }else if(i == 7){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 8){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 10){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 2 >= 0)array[x - 1][y - 2] = 0; // left double top
-//                }else if(i == 12){
-//                    if(x - 1 >= 0 && y - 3 >= 0)array[x - 1][y - 3] = 0; // left triple top
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 4 >= 0)array[x - 1][y - 4] = 0; // left quadruple top
-//                }
-//            }
-//        }else if(side.equals("right")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 2 <= array.length - 1)array[x + 2][y - 1] = 0; // top double right
-//                }else if(i == 3){
-//                    if(y - 1 >=0 && x + 3 <= array.length - 1)array[x + 3][y - 1] = 0; // top triple right
-//                }else if(i == 4){
-//                    if(y - 1 >=0 && x + 4 <= array.length - 1)array[x + 4][y - 1] = 0; // top quadruple right
-//                }else if(i == 5){
-//                    if(x + 4 <= array.length - 1)array[x + 4][y] = 0; // quadruple right
-//                }else if(i == 6){
-//                    if(x + 4 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 4][y + 1] = 0; // quadruple right bottom
-//                }else if(i == 7){
-//                    if(x + 3 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 3][y + 1] = 0; // triple right bottom
-//                }else if(i == 8){
-//                    if(x + 2 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 2][y + 1] = 0; // double right bottom
-//                }else if(i == 9){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                } else if(i == 10){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 12){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("bottom")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1 && y + 2 <= array.length - 1) array[x + 1][y + 2] = 0; // double bottom right
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 && y + 3 <= array.length - 1) array[x + 1][y + 3] = 0; // triple bottom right
-//                }else if(i == 6){
-//                    if(x + 1 <= array.length - 1 && y + 4 <= array.length - 1) array[x + 1][y + 4] = 0; // quadruple bottom right
-//                }else if(i == 7){
-//                    if(y + 4 <= array.length - 1)array[x][y + 4] = 0; // quadrupole bottom
-//                }else if(i == 8){
-//                    if( x - 1 >= 0 && y + 4 <= array.length - 1)array[x - 1][y + 4] = 0; // quadruple bottom left
-//                }else if(i == 9){
-//                    if( x - 1 >= 0 && y + 3 <= array.length - 1)array[x - 1][y + 3] = 0; // triple bottom left
-//                }else if(i == 10){
-//                    if( x - 1 >= 0 && y + 2 <= array.length - 1)array[x - 1][y + 2] = 0; // double bottom left
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 12){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("left")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 4){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 5){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 6){
-//                    if( x - 2 >= 0 && y + 1 <= array.length - 1)array[x - 2][y + 1] = 0; // double left bottom
-//                }else if(i == 7){
-//                    if( x - 3 >= 0 && y + 1 <= array.length - 1)array[x - 3][y + 1] = 0; // triple left bottom
-//                }else if(i == 8){
-//                    if( x - 4 >= 0 && y + 1 <= array.length - 1)array[x - 4][y + 1] = 0; // quadruple left bottom
-//                }else if(i == 9){
-//                    if(x - 4 >= 0)array[x - 4][y] = 0; // quadruple left
-//                }else if(i == 10){
-//                    if(x - 4 >= 0 && y - 1 >= 0)array[x - 4][y - 1] = 0; // quadruple left top
-//                }else if(i == 11){
-//                    if(x - 3 >= 0 && y - 1 >= 0)array[x - 3][y - 1] = 0; // triple left top
-//                }else if(i == 12){
-//                    if(x - 2 >= 0 && y - 1 >= 0)array[x - 2][y - 1] = 0; // double left top
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("dtb")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 3 >= 0)array[x][y - 3] = 0; // triple top
-//                }else if(i == 1){
-//                    if(y - 3 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 3] = 0; // triple top right
-//                }else if(i == 2){
-//                    if(y - 2 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 2] = 0;// double top right
-//                }else if(i == 3){
-//                    if(y - 1 >=0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0;// top right
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1) array[x + 1][y] = 0;// right
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 && y + 1 <= array.length - 1)array[x + 1][y + 1] = 0;// right bottom
-//                }else if(i == 6){
-//                    if(x + 1 <= array.length - 1 && y + 2 <= array.length - 1)array[x + 1][y + 2] = 0;// double right bottom
-//                }else if(i == 7){
-//                    if(y + 2 <= array.length - 1)array[x][y + 2] = 0; // double bottom
-//                }else if(i == 8){
-//                    if(x - 1 >= 0 && y + 2 <= array.length - 1)array[x - 1][y + 2] = 0; // double bottom left
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 10){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 11){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }else if(i == 12){
-//                    if(x - 1 >= 0 && y - 2 >= 0)array[x - 1][y - 2] = 0; // left double top
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 3 >= 0)array[x - 1][y - 3] = 0; // left triple top
-//                }
-//            }
-//        }else if(side.equals("dbt")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 2 >= 0)array[x][y - 2] = 0; // double top
-//                }else if(i == 1){
-//                    if(y - 2 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 2] = 0; // double top right
-//                }else if(i == 2){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 3){
-//                    if(x + 1 <= array.length - 1)array[x + 1][y] = 0; //  right
-//                }else if(i == 4){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 && y + 2 <= array.length - 1) array[x + 1][y + 2] = 0; // double bottom right
-//                }else if(i == 6){
-//                    if(x + 1 <= array.length - 1 && y + 3 <= array.length - 1) array[x + 1][y + 3] = 0; // triple bottom right
-//                }else if(i == 7){
-//                    if(y + 3 <= array.length - 1)array[x][y + 3] = 0; // triple bottom
-//                }else if(i == 8){
-//                    if( x - 1 >= 0 && y + 3 <= array.length - 1)array[x - 1][y + 3] = 0; // triple bottom left
-//                }else if(i == 9){
-//                    if( x - 1 >= 0 && y + 2 <= array.length - 1)array[x - 1][y + 2] = 0; // double bottom left
-//                }else if(i == 10){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 11){
-//                    if(x - 1 >= 0)array[x - 1][y] = 0; // left
-//                }else if(i == 12){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 2 >= 0)array[x - 1][y - 2] = 0; // left double top
-//                }
-//            }
-//        }else if(side.equals("drl")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(y - 1 >=0 && x + 2 <= array.length - 1)array[x + 2][y - 1] = 0; // top double right
-//                }else if(i == 3){
-//                    if(y - 1 >=0 && x + 3 <= array.length - 1)array[x + 3][y - 1] = 0; // top triple right
-//                }else if(i == 4){
-//                    if(x + 3 <= array.length - 1)array[x + 3][y] = 0; // triple right
-//                }else if(i == 5){
-//                    if(x + 3 <= array.length - 1 && y + 1 <= array.length - 1) array[x + 3][y + 1] = 0; // triple right bottom
-//                }else if(i == 6){
-//                    if(x + 2 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 2][y + 1] = 0; // double right bottom
-//                }else if(i == 7){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                } else if(i == 8){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 9){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 10){
-//                    if(x - 2 >= 0 && y + 1 <= array.length - 1)array[x - 2][y + 1] = 0; // bottom double left
-//                }else if(i == 11){
-//                    if(x - 2 >= 0)array[x - 2][y] = 0; // double left
-//                }else if(i == 12){
-//                    if(x - 2 >= 0 && y - 1 >= 0)array[x - 2][y - 1] = 0; // double left top
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }else if(side.equals("dlr")){
-//            for(int i = 0; i < 14;i ++){
-//                if(i == 0){
-//                    if(y - 1 >= 0)array[x][y - 1] = 0; // top
-//                }else if(i == 1){
-//                    if(y - 1 >= 0 && x + 1 <= array.length - 1)array[x + 1][y - 1] = 0; // top right
-//                }else if(i == 2){
-//                    if(y - 1 >= 0 && x + 2 <= array.length - 1)array[x + 2][y - 1] = 0; // top double right
-//                }else if(i == 3){
-//                    if(x + 2 <= array.length - 1)array[x + 2][y] = 0; //  double right
-//                }else if(i == 4){
-//                    if(x + 2 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 2][y + 1] = 0; // double right bottom
-//                }else if(i == 5){
-//                    if(x + 1 <= array.length - 1 &&  y + 1 <= array.length - 1)array[x + 1][y + 1] = 0; // right bottom
-//                }else if(i == 6){
-//                    if(y + 1 <= array.length - 1)array[x][y + 1] = 0; // bottom
-//                }else if(i == 7){
-//                    if(x - 1 >= 0 && y + 1 <= array.length - 1)array[x - 1][y + 1] = 0; // bottom left
-//                }else if(i == 8){
-//                    if( x - 2 >= 0 && y + 1 <= array.length - 1)array[x - 2][y + 1] = 0; // double left bottom
-//                }else if(i == 9){
-//                    if( x - 3 >= 0 && y + 1 <= array.length - 1)array[x - 3][y + 1] = 0; // triple left bottom
-//                }else if(i == 10){
-//                    if(x - 3 >= 0)array[x - 3][y] = 0; // triple left
-//                }else if(i == 11){
-//                    if(x - 3 >= 0 && y - 1 >= 0)array[x - 3][y - 1] = 0; // triple left top
-//                }else if(i == 12){
-//                    if(x - 2 >= 0 && y - 1 >= 0)array[x - 2][y - 1] = 0; // double left top
-//                }else if(i == 13){
-//                    if(x - 1 >= 0 && y - 1 >= 0)array[x - 1][y - 1] = 0; // left top
-//                }
-//            }
-//        }
-//    }
-//
     private void drawStatusCellMyOpponentShips(Graphics g){
         for(int i = 0; i < arrayFieldTwo.length;i++){
             for(int j = 0; j < arrayFieldTwo[i].length;j++){
@@ -1251,8 +671,7 @@ public class SecondGamePanel extends JPanel {
         tempMemberCorX = x;
         tempMemberCorY = y;
     }
-    public void addEventListenerSendAnswerServerControlWord(EventListenerSendShot listener)
-    {
+    public void addEventListenerSendAnswerServerControlWord(EventListenerSendShot listener) {
         listenerList.add(EventListenerSendShot.class, listener);
     }
 
