@@ -2,6 +2,8 @@ package sea_battle_package;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Created by Alexandr on 01.07.2017.
@@ -27,13 +29,10 @@ public class Loader extends JFrame{
         mainPanel = new JPanel();
         add(mainPanel,BorderLayout.CENTER);
 
-//        panelButton = new PanelButton((((width / 100) * 60) / 100) * 10, getHeight());
-//        panelSetShip = new PanelSetShip((width / 100) * 60, getHeight());
-
         setStartPanel();
         setPanelButtonAndPanelShip();
         client = new Client();
-//        setFirstGamePanelAndSecondGamePanel();
+        addWindowClosing();
     }
 
     private void setStartPanel() {
@@ -41,6 +40,18 @@ public class Loader extends JFrame{
         mainPanel.add(sp);
     }
 
+    private void addWindowClosing(){
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                if(!sgp.equals(null)){
+                    System.out.println("QWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQW");
+                    client.sendDisconnect();
+                }
+            }
+        });
+    }
     private void setPanelButtonAndPanelShip(){
         sp.addMyEventListener(new EventListenerLoadPanel() {
             @Override
@@ -289,6 +300,13 @@ public class Loader extends JFrame{
             @Override
             public void sendControlWord(EventObjectSendShot eventObjectSendShot) {
 
+            }
+        });
+
+        client.addEventListenerStopGame(new ListenerStopGame() {
+            @Override
+            public void stopGameL(StopGame stopGame) {
+                sgp.setStatusGame(stopGame.getStopGame());
             }
         });
     }

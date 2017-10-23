@@ -20,8 +20,6 @@ public class Client {
     private Socket sock;
     private BufferedReader reader;
     private PrintWriter writer;
-//    private ObjectOutputStream oos;
-//    private ObjectInputStream ois;
     private Scanner sc;
     private String massage;
     private String[][] dataTable;
@@ -64,15 +62,6 @@ public class Client {
         users.add(name);
     }
 
-//    private void createStreamObject(){
-//        try {
-//            oos = new ObjectOutputStream(sock.getOutputStream());
-//            ois = new ObjectInputStream(sock.getInputStream());
-//        }catch(IOException e){
-//            System.out.println("Проблема с потоком обьектов");
-//            e.printStackTrace();
-//        }
-//    }
 
     public void writeUsers() {
         String[] tempList = new String[(users.size())];
@@ -82,6 +71,9 @@ public class Client {
         }
     }
 
+    public boolean getStatusConnection(){
+        return isConnected;
+    }
     public void sendMassage(String message) {
         try {
             writer.println(username + ":" + message + ":" + "Chat");
@@ -176,12 +168,6 @@ public class Client {
         return arrayCoordinatesShipToString.substring(0,arrayCoordinatesShipToString.length() - 1);
     }
 
-
-    public void userRemove(String data) {
-//        panel2.addMessage(data + " is now offline.\n");
-        System.out.println(data + " is now offline.\n");
-    }
-
     public void sendDisconnect() {
         String bye = (username + ": :Disconnect");
         try {
@@ -221,15 +207,11 @@ public class Client {
                 writer.println(username + ":has connected.:Connect");
                 writer.flush();
 //                writer.close();
-//                createStreamObject();
                 isConnected = true;
             } catch (Exception ex) {
                 System.out.println("Cannot Connect! Try Again. \n");
-//                panel2.addMessage("Cannot Connect! Try Again. \n");
             }
-
             StartThread();
-//            createStreamObject();
         }
     }
 
@@ -246,6 +228,11 @@ public class Client {
     public void addEventListenerSendAnswerServerControlWord(EventListenerSendShot listener)
     {
         listenerList.add(EventListenerSendShot.class, listener);
+    }
+
+    public void addEventListenerStopGame(ListenerStopGame listener)
+    {
+        listenerList.add(ListenerStopGame.class, listener);
     }
 
     private void sendAnswer(EventObjectSendShot evt) {
@@ -280,6 +267,15 @@ public class Client {
         for (int i = 0; i < listeners.length; i = i + 2) {
             if (listeners[i] == EventListenerObjectClient.class) {
                 ((EventListenerObjectClient) listeners[i + 1]).getDataUser(evt);
+            }
+        }
+    }
+
+    private void stopGame (StopGame evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i = i + 2) {
+            if (listeners[i] == ListenerStopGame.class) {
+                ((ListenerStopGame) listeners[i + 1]).stopGameL(evt);
             }
         }
     }
@@ -347,6 +343,8 @@ public class Client {
                     }
                     else if (data[2].equals(disconnect)) {
                         System.out.println("Вы были отключены и вернуль в очередь!!");
+
+                        stopGame(new StopGame(new Object(),false));
 //                        userRemove(data[0]);
 //                        sendDisconnect();
 //                        dissconnect();

@@ -43,7 +43,8 @@ public class SecondGamePanel extends JPanel {
     private int tempMemberCorY;
     private EventListenerList listenerList;
     private Sound sound;
-    ChangeCellAroundShips ccas;
+    private ChangeCellAroundShips ccas;
+    private boolean statusGame;
 
     private boolean flagRec;
     private boolean flag = false;
@@ -126,6 +127,13 @@ public class SecondGamePanel extends JPanel {
         }
     }
 
+    public void setStatusGame(boolean status){
+        statusGame = status;
+        if(!statusGame){
+            System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+            sendControlWord(new EventObjectSendShot("Left"));
+        }
+    }
     private void setCor(int startPoz, int border, int length, int corX, int corY, int array[][]){
         int x = corX;
         int y = corY;

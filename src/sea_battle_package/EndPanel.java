@@ -52,7 +52,10 @@ public class EndPanel extends JPanel {
                 word = wordFromSGP;
                 sound = new Sound(new File("E:\\www\\SeaBattle\\sound_Five.wav"));
             }else if(wordFromSGP.equals("LOSE")){
+                word = wordFromSGP;
                 sound = new Sound(new File("E:\\www\\SeaBattle\\sound_Six.wav"));
+            }else if(wordFromSGP.equals("left")){
+                word = "Left game";
             }
         }
         word = wordFromSGP;
@@ -76,7 +79,7 @@ public class EndPanel extends JPanel {
     }
 
     private void drawLineUnderAgain(Graphics g){
-        g.drawLine(width / 2 - 70,  (height - height / 3) + 30,
+        g.drawLine(width / 2 - 70,  (height - height / 3) + 45,
                 width / 2 - 70 + width / 100 * (20 - 2) + 10, height - height / 3 - 42 + height / 100 * (20 - 2));
     }
 
@@ -117,12 +120,16 @@ public class EndPanel extends JPanel {
 //                super.mouseClicked(e);
                 if(!flagMove) {
                     if (checkArea(e.getX(), e.getY())) {
-                        flagMove = true;
-                        timerStart();
-                        sound.stop();
-                        againGame(new AgainGameCl(e));
-//                        flagMove = false;
-//                    fireLoad(new LoadEventListenerPanel(e));
+                        if(!word.equals("WIN") && !word.equals("LOSE")){
+                            flagMove = true;
+                            timerStart();
+                            againGame(new AgainGameCl(e));
+                        }else{
+                            flagMove = true;
+                            timerStart();
+                            sound.stop();
+                            againGame(new AgainGameCl(e));
+                        }
                     }
                 }
             }
