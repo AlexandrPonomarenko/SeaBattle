@@ -30,7 +30,7 @@ public class StartPanel extends JPanel {
     public void paint(Graphics g) {
         setRealWidthAndHeight(getWidth(),getHeight());
         g.setColor(new Color(32,178,170));
-        g.fillRect(0,0,getWidth(),getHeight());
+        g.fillRect(0,-20,getWidth(),getHeight());
         roundRect(g,realWidth / 2 - (realWidth / 100 * 15), realHeight / 2 - (realHeight / 100 * 10),
                 realWidth / 100 * 30, realHeight / 100 * 20);
 

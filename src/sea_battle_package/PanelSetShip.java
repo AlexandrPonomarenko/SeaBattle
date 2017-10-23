@@ -55,7 +55,7 @@ public class PanelSetShip extends JPanel {
         setCopPanel(getWidth(),getHeight());
         g.setColor(Color.GRAY);
         g.fillRect(0,0,getWidth(),getHeight());
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(178,34,34));
         drawCell(g);
         g.setColor(Color.black);
         drawSinglWeb(g, recWidth, recHeight, top, left);
@@ -113,11 +113,8 @@ public class PanelSetShip extends JPanel {
 
         boolean flagX = false;
         boolean flagY = false;
-//        System.out.println("x " + x + " " + startPoz + " " + length);
         if((x >= startPoz && x <= border)  && (y >= top && y <= height - bottom)) {
-
             for (int i = startPoz, i2 = 0; i <= length + startPoz; i += recWidth, i2++) {
-//                System.out.println("i " + i + " " + x);
                 if (i + recWidth > x) {
                     indexX = i2;
                     flagX = true;
@@ -132,8 +129,6 @@ public class PanelSetShip extends JPanel {
                     break;
                 }
             }
-//            System.out.println(indexX + " " + indexY);
-//            System.out.println(x + " X ---- Y" + y);
             if (flagX && flagY) {
                 if(stateShipVerOrHor == 1) {
                     for (int i = indexX; i < indexX + stateShip; i++) {

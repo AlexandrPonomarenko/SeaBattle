@@ -31,7 +31,7 @@ public class PanelButton extends JPanel implements ActionListener{
         arrayQueue = new ArrayQueue<>(7);
         eventListenerList = new EventListenerList();
         setLayout(new GridBagLayout());
-        setBackground(Color.orange);
+        setBackground(new Color(192,192,192));
 
         setButtonPanel(buttonOneShip, "OneShip", 0);
         setButtonPanel(buttonTwoShip, "TwoShip", 0);

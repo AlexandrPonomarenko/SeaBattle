@@ -52,10 +52,10 @@ public class FirstGamePanel extends JPanel  {
 
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Color.orange);
+        g.setColor(new Color(255,69,0));
         setCoordinates(getWidth(),getHeight(),5);
         g.fillRect(0,0,getWidth(),getHeight());
-        g.setColor(Color.red);
+        g.setColor(new Color(184,134,11));
         poligon = new Polygon(xCor,yCor,5);
 //        g.drawPolygon(poligon);
         g.fillPolygon(poligon);
