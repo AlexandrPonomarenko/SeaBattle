@@ -14,7 +14,6 @@ import java.util.ArrayList;
  */
 public class ConectionPanel extends JPanel{
 
-//    private JLabel labelName;
     private JTextField textName;
     private JButton create;
     private JButton connect;
@@ -46,7 +45,6 @@ public class ConectionPanel extends JPanel{
         addFocusListener(textName);
         sound = new Sound(new File("E:\\www\\SeaBattle\\sound_Three.wav"));
         sound.play();
-        System.out.println("ПОСЛЕ ЗАПУСКА ПЕСНИ");
     }
 
     private void setButtonPanel(JButton button, String name, int weighty) {
@@ -77,10 +75,7 @@ public class ConectionPanel extends JPanel{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if(e.getActionCommand().equals("Create")){
-                    System.out.println("В начале кнопки СОЗДАТЬ");
-//                    nameTableUser = textName.getText();
                     objectNameUser = textName.getText();
                     fireMyEvent(new MyEventObject());
                     goMyEvent(new MyEventObject(array));
@@ -90,10 +85,7 @@ public class ConectionPanel extends JPanel{
                     sendConnection(new EventObjectClient(e.getActionCommand().toString()));
                     sendArrayShip(new EventObjectClient(array));
                     sound.stop();
-                    System.out.println("В конце кнопки СОЗДАТЬ");
                 }else{
-                    System.out.println("В начале кнопки ПОДКЛЮЧИТСЯ");
-                    System.out.println(nameTableUser + " ++++++++++++++ " + e.getActionCommand());
                     objectNameUser = textName.getText() + "," + nameTableUser;
                     fireMyEvent(new MyEventObject());
                     goMyEvent(new MyEventObject(array));
@@ -103,7 +95,6 @@ public class ConectionPanel extends JPanel{
                     sendConnection(new EventObjectClient("ConnectUser"));
                     sendArrayShip(new EventObjectClient(array));
                     sound.stop();
-                    System.out.println("В конце кнопки ПОДКЛЮЧИТСЯ");
                 }
             }
         });
@@ -128,10 +119,8 @@ public class ConectionPanel extends JPanel{
             {
                 if(checkString(tf.getText())){
                     turnOnButton(arrayListJButton.get(0));
-//                    turnOnButton(arrayListJButton.get(1));
                 }else{
                     turnOffButton(arrayListJButton.get(0));
-//                    turnOffButton(arrayListJButton.get(1));
                 }
 
                 if(!nameTableUser.equals("") && checkString(tf.getText())){
@@ -146,17 +135,13 @@ public class ConectionPanel extends JPanel{
             {
                 if(checkString(tf.getText())){
                     turnOnButton(arrayListJButton.get(0));
-//                    turnOnButton(arrayListJButton.get(1));
                 }else{
                     turnOffButton(arrayListJButton.get(0));
-//                    turnOffButton(arrayListJButton.get(1));
                 }
 
                 if(checkString(tf.getText()) && !nameTableUser.equals("")){
-//                    turnOnButton(arrayListJButton.get(0));
                     turnOnButton(arrayListJButton.get(1));
                 }else{
-//                    turnOffButton(arrayListJButton.get(0));
                     turnOffButton(arrayListJButton.get(1));
                 }
             }
@@ -177,15 +162,8 @@ public class ConectionPanel extends JPanel{
             nameTableUser = selectName;
             turnOnButton(arrayListJButton.get(1));
         }
-        System.out.println(nameTableUser + " NNNNAAAAAAMMMMEEEE");
     }
     public void setShip(int array[][]){
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + " + ");
-            }
-            System.out.println();
-        }
         this.array = array;
     }
 

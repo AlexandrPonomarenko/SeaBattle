@@ -34,12 +34,10 @@ public class EndPanel extends JPanel {
         setFontParam(100);
         setGlobalXAndGlobalY(width / 2 - font.getSize(), height / 2 + 25);
         endTimer = x / 2 - font.getSize();
-        System.out.println(endTimer + "ЭТО В КОНСТРУКТОРЕ");
         setTimer();
         timerStart();
         addMouseClick();
         addMouseListener();
-//        setBackground(new Color(30, 100, 77));
     }
 
     private void setWidthAndHeight(int w, int h){
@@ -66,7 +64,6 @@ public class EndPanel extends JPanel {
     }
     public void paint(Graphics g){
         setWidthAndHeight(getWidth(), getHeight());
-//        setColor(231,232,23);
         g.setColor(new Color(30, 100, 77));
         g.fillRect(0,0,getWidth(),getHeight());
         setFontParam(100);
@@ -79,20 +76,19 @@ public class EndPanel extends JPanel {
     }
 
     private void drawLineUnderAgain(Graphics g){
-        g.drawLine(width / 2 - 70,  (height - height / 3) + 45,
+        g.drawLine(width / 2 - 70,  (height - height / 3) + 48,
                 width / 2 - 70 + width / 100 * (20 - 2) + 10, height - height / 3 - 42 + height / 100 * (20 - 2));
     }
 
     private void setFontParam(int size){
         font = new Font("San Francisco", Font.BOLD | Font.ITALIC, size);
     }
+
     private void roundRect(Graphics g , int x, int y, int width, int height){
         if(flagColor){
             g.setColor(new Color(139,0,0));
         }else {g.setColor(Color.WHITE);}
-//        g.setColor(Color.WHITE);
         g.drawRoundRect( x, y, width, height, 20,15);
-
     }
     private void drawWords(Graphics graphics, int r, int g, int b, String word, int x, int y) {
         if(word.equals("Again") && (flagColor)) {
@@ -117,7 +113,6 @@ public class EndPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
                 if(!flagMove) {
                     if (checkArea(e.getX(), e.getY())) {
                         if(!word.equals("WIN") && !word.equals("LOSE")){
@@ -140,9 +135,6 @@ public class EndPanel extends JPanel {
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-//                super.mouseMoved(e);
-//                System.out.println("MAUSE" + e.getX()+ " ---  " + e.getY());
-//                if(!flagMove) {
                 if (checkArea(e.getX(), e.getY())) {
                     flagColor = true;
                     repaint();
@@ -150,7 +142,6 @@ public class EndPanel extends JPanel {
                     flagColor = false;
                     repaint();
                 }
-//                }
             }
         });
     }
@@ -160,23 +151,14 @@ public class EndPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                System.out.println("TIMER ____________in SECOND GAME PANEL");
                 if(flagMove){
                     if(globalX <= endTimer){
                         globalX++;
-                        System.out.println("Таймер " + globalX + "rrrrrrrrr " + endTimer);
                     }else{
                         timerStop();
                         endTimer = width + 100;
                         flagMove = false;
-                        System.out.println(flagMove + "EEEEEEEEEEEEEEEEEEEEEE");
-//                        System.out.println(controlMove + "EEEEEEEEEEEEEEEEEEEEEE");
                         repaint();
-                        System.out.println("Таймер СТОП" );
-//                        startNumberTimer = 0;
-//                    if(controlMove) {
-//                        sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-//                    }
                     }
                 }
             }
@@ -185,6 +167,7 @@ public class EndPanel extends JPanel {
     private void timerStart(){
         timer.start();
     }
+
     private void timerStop(){
         timer.stop();
     }

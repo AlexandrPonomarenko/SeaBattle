@@ -10,7 +10,6 @@ public class ImagePanel extends JPanel {
     Image image;
     public ImagePanel(int width, int height){
         setSize(width,height);
-//        image = new ImageIcon("\\SeaBattle\\src\\sea_battle_package\\no_Created_Games.png").getImage();
         image = new ImageIcon("\\E:\\www\\SeaBattle\\no_Created_Games.png").getImage();
     }
     public void paint(Graphics g){

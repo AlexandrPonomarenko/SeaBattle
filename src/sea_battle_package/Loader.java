@@ -45,9 +45,12 @@ public class Loader extends JFrame{
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                if(!sgp.equals(null)){
-                    System.out.println("QWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQWQW");
+                if(sgp.equals(null)){
+                    System.out.println("wwwwwwwwwwwwwwwwwwwwww");
+                    System.exit(1);
+                }else if(!sgp.equals(null));{
                     client.sendDisconnect();
+
                 }
             }
         });
@@ -100,10 +103,6 @@ public class Loader extends JFrame{
                         setListenerCP();
                         setListenerClient();
                         setListenerCTP();
-//                        setListenerSecondGamePanel();
-
-//                        setFirstGamePanelAndSecond GamePanel();
-//                        sgp.setShip(eventObject.getArray());
                     }
 
                     @Override
@@ -212,7 +211,6 @@ public class Loader extends JFrame{
             @Override
             public void sendCommandConnection(EventObjectClient eventObjectClient) {
                 client.setNameUserFromTableToConnect(eventObjectClient.getNameTableUser());
-                System.out.println("Сработал метод sendCommandConnection " + eventObjectClient.getCommandConnection() + " -- " + eventObjectClient.getNameTableUser());
                 client.sendMassageCommand(eventObjectClient.getNameCreatOrConnectUser(), eventObjectClient.getCommandConnection());
             }
 
@@ -244,9 +242,7 @@ public class Loader extends JFrame{
 
             @Override
             public void getDataUser(EventObjectClient eventObjectClient) {
-                System.out.println("getDataUser() ///////////" );
                 ctp.setDataUser(eventObjectClient.getDataUser());
-//                ctp.setDataUser(eventObjectClient.getDataUser());
             }
 
             @Override
@@ -340,13 +336,11 @@ public class Loader extends JFrame{
 
             @Override
             public void changeNameUser(EventObjectClient eventObjectClient) {
-                System.out.println("Сработал метод setNameTableUser В CTP");
                 cp.setNameTableUser(eventObjectClient.getNameTableUser());
             }
 
             @Override
             public  void sendNameUser(EventObjectClient eventObjectClient){
-//                client.setNameUser(eventObjectClient.getNameCreatOrConnectUser());
             }
         });
     }
@@ -355,7 +349,6 @@ public class Loader extends JFrame{
         sgp.addEventListenerSendAnswerServerControlWord(new EventListenerSendShot() {
             @Override
             public void sendCoordinateShotOrAnswerServer(EventObjectSendShot eventObjectSendShot) {
-                System.out.println("ЭТО В КЛАССЕ ЛОДЕР ПЕРЕД КЛАССОМ КЛИЕНТА ____________------------");
                 client.sendCoordinatesShot(eventObjectSendShot.getCordShot());
             }
 
@@ -428,13 +421,8 @@ public class Loader extends JFrame{
         clearMainPanel();
         setSizeFrame(width / 2, height / 2);
         cp = new ConectionPanel((((width / 100) * 60) / 100) * 10, getHeight());
-//        System.out.println((((width / 100) * 60) / 100) * 10 + " _________________----------------------------------------------");
         ctp = new ConnectionTablePanel(width - (((width / 100) * 60) / 100) * 10, getHeight());
         add(mainPanel,BorderLayout.CENTER);
-//        mainPanel.setLayout(new BorderLayout());
-//        mainPanel.add(cp, BorderLayout.NORTH);
-//        mainPanel.add(ctp, BorderLayout.CENTER);
-
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.add(cp, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.NORTH, GridBagConstraints.VERTICAL,
                 new Insets(0,0,0,0), 0,0));
@@ -456,5 +444,4 @@ public class Loader extends JFrame{
     }
 
     private void setSizeFrame(int w, int h){setSize(w,h);}
-
 }

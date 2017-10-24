@@ -11,8 +11,6 @@ import javax.swing.event.EventListenerList;
  * Created by Alexandr on 03.07.2017.
  */
 public class FirstGamePanel extends JPanel  {
-    private JLabel time;
-    private JLabel status;
     private GridBagLayout gbl;
     private GridBagConstraints gbc;
     private Polygon poligon;
@@ -29,25 +27,8 @@ public class FirstGamePanel extends JPanel  {
     public FirstGamePanel(int w, int h){
         setPreferredSize(new Dimension(w,h));
         setTimer();
-//        timerStart();
         timerStop();
         listenerList = new EventListenerList();
-//        gbl = new GridBagLayout();
-//        setLayout(gbl);
-//        time = new JLabel("Time");
-//        status = new JLabel("Status: ");
-
-//        gbc = new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.NONE,
-//                new Insets(0,0,0,0),0,0);
-//
-//        gbl.setConstraints(time, gbc);
-//        add(time, new GridBagConstraints(1,0,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.BOTH,
-//                new Insets(0,0,0,0),0,0));
-
-//        gbc = new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,
-//                new Insets(0,0,0,0),0,0);
-//        gbl.setConstraints(status, gbc);
-//        add(status);
     }
 
     public void paint(Graphics g) {
@@ -57,9 +38,7 @@ public class FirstGamePanel extends JPanel  {
         g.fillRect(0,0,getWidth(),getHeight());
         g.setColor(new Color(184,134,11));
         poligon = new Polygon(xCor,yCor,5);
-//        g.drawPolygon(poligon);
         g.fillPolygon(poligon);
-//        repaintComponent(g);
         drawString(g, getWidth() / 2, 0, "Time", "top");
         drawString(g, getWidth() / 2, getHeight(), "Status", "bottom");
         drawString(g, getWidth() / 100 * 10, getHeight(), myName, "bottom");
@@ -92,13 +71,10 @@ public class FirstGamePanel extends JPanel  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-//                System.out.println("TIMER ____________ in FIRST GAME PANEL");
                 if(startNumberTimer > 0){
                     startNumberTimer--;
                 }else{
                     startNumberTimer = 30;
-//                    startNumberTimer = 0;
-                    System.out.println("ПЕРЕД ОТПРАВКОЙ ЛОСТМУВ");
                     loseYourMove(new EventObjectSendShot(3));
                     timerStop();
                 }
@@ -107,10 +83,7 @@ public class FirstGamePanel extends JPanel  {
     }
 
     public void setTimerWait(){
-//        System.out.println(" В МЕТОДЕ setTimerWait " + time);
-//        controlTimer = time;
         timerStop();
-        System.out.println(" В МЕТОДЕ setTimerWait " + controlTimer);
         if(controlTimer == 1){
             startNumberTimer = 30;
             timerStart();
@@ -122,18 +95,15 @@ public class FirstGamePanel extends JPanel  {
 
     public void setMyName(String myName){
         this.myName = myName;
-        System.out.println(myName + " ---- ЭТО В МЕТОДЕ setMyName");
         repaint();
     }
 
     public void setNameMyOpponent(String nameMyOpponent){
         this.nameMyOpponent = nameMyOpponent;
-        System.out.println(nameMyOpponent + " ---- ЭТО В МЕТОДЕ setNameMyOpponent" + this.nameMyOpponent);
         repaint();
     }
 
     public void setControlTimer(int conTim){
-        System.out.println("ПРИХОД setControlTimer " + conTim);
         controlTimer = conTim;
         setTimerWait();
     }
@@ -150,23 +120,18 @@ public class FirstGamePanel extends JPanel  {
             if (i == 0) {
                 xCor[i] = (w / 2) - 20;
                 yCor[i] = 0;
-//                System.out.println( xCor[i] + " I = 0 " + yCor[i]);
             } else if (i == 1) {
                 xCor[i] = (w / 2) + 20;
                 yCor[i] = 0;
-//                System.out.println(xCor[i] + " i == 1 " + yCor[i]);
             } else if (i == 2) {
                 xCor[i] = (w / 2) + 60;
                 yCor[i] = h;
-//                System.out.println(xCor[i] + " i == 2 " + yCor[i]);
             } else if (i == 3) {
                 xCor[i] = (w / 2)  - 60;
                 yCor[i] = h;
-//                System.out.println(xCor[i] + " i == 3 " + yCor[i]);
             } else if (i == 4) {
                 xCor[i] = (w / 2) - 20;
                 yCor[i] = 0;
-//                System.out.println(xCor[i] + " i == 4 " + yCor[i]);
             }
         }
     }

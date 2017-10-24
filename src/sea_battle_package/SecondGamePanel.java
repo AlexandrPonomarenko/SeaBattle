@@ -30,10 +30,7 @@ public class SecondGamePanel extends JPanel {
     private int endTimer = 180;
     private String create = "Waiting for an opponent to connect";
     private String afterStart = "You have 30 seconds to make a move. You go first!";
-    private String ready = "The game will start";
     private String connect = "You have 30 seconds to make a move. You go second!";
-    private String lost = "lost";
-    private String win = "win";
     private String flagWord;
     private String startGame = "";
     private boolean flagControlTimer = true;
@@ -46,9 +43,7 @@ public class SecondGamePanel extends JPanel {
     private ChangeCellAroundShips ccas;
     private boolean statusGame;
 
-    private boolean flagRec;
     private boolean flag = false;
-    private boolean drawFlag = false;
 
     private int TOP = 20;
     private int LEFT = 40;
@@ -91,12 +86,10 @@ public class SecondGamePanel extends JPanel {
         g.setColor(new Color(178,34,34));
         drawCell(g);
         updateGrid(g);
-//        drawShot(g);
         controlDrawLineAndDrawText(g);
         drawStatusCellMyOpponentShips(g);
         drawStatusCellMyShips(g);
         if(!sound.isPlaying()){
-            System.out.println("TUT");
             sound.play();
         }
     }
@@ -130,7 +123,6 @@ public class SecondGamePanel extends JPanel {
     public void setStatusGame(boolean status){
         statusGame = status;
         if(!statusGame){
-            System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
             sendControlWord(new EventObjectSendShot("Left"));
         }
     }
@@ -201,27 +193,20 @@ public class SecondGamePanel extends JPanel {
     private void controlDrawLineAndDrawText(Graphics g){
         if(flagControlTimer) {
             if (flagWord.equals("Create")) {
-//                System.out.println("ЗАШЕЛ В БЛОК CREATE");
                 if (startGame.equals("start")) {
-                    System.out.println("ЗАШЕЛ В ПОДБЛОК START БЛОКА CREATE");
                     controlMove = true;
                     drawFatLine(g);
                     drawText(g, afterStart);
                     setTimerWait();
                     repaint();
                 } else {
-                    System.out.println("ЗАШЕЛ В БЛОК CREATE КОГДА ЕЩЕ НЕ ПРИШЛО СЛОВО START " + arrayFieldTwo[0][0] );
                     drawFatLine(g);
                     drawText(g, create);
                     repaint();
                 }
             } else if (flagWord.equals("Connect")) {
-//                timerStop();
-                System.out.println("ЗАШЕЛ С БЛОК CONNECT");
                 if(startGame.equals("start")){
-                    System.out.println("ЗАШЕЛ В ПОДБЛОК START БЛОКА CONNECT");
                     setTimerWait();
-//                    timerStart();
                     controlMove = false;
                     drawFatLine(g);
                     drawText(g, connect);
@@ -233,17 +218,14 @@ public class SecondGamePanel extends JPanel {
 
     public void setFlagWord(String flagWord){
         this.flagWord = flagWord;
-        System.out.println(flagWord);
     }
 
     public void setWordStart(String start){
         startGame = start;
-        System.out.println(startGame + "ЭТО В МЕТОДЕ УСТАНОВКИ СЛОВА СТАРТ setWordStart");
     }
 
     public void setControlMoveAnswerFromServer(String answerFromServer){
         repaint();
-        System.out.println("ПРИХОД ОТ СЕРВЕРА " + answerFromServer);
         String tempArr[] = answerFromServer.split(",");
         if(tempArr[0].equals("move") || tempArr[0].equals("skip move")){
             if(tempArr[0].equals("move")){
@@ -258,207 +240,146 @@ public class SecondGamePanel extends JPanel {
         }
 
         if(tempArr[0].equals("you")) {
-            System.out.println("Зашел в " + tempArr[0]);
             if (tempArr[1].equals("true") || tempArr[1].equals("false") || tempArr[1].equals("WIN")) {
                 if (tempArr[1].equals("true")) {
-                    System.out.println("ЗАШЕЛ " + tempArr[1]);
                     controlMove = true;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                    System.out.println("перед установкой 1 answerFromServer.length() <= 5");
                     arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
                     repaint();
                 } else if (tempArr[1].equals("false")) {
-                    System.out.println("ЗАШЕЛ " + tempArr[1]);
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
                     arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 0;
                     repaint();
                 } else if (tempArr[1].equals("WIN")) {
                     if(tempArr[2].equals("two")){
-                        System.out.println("ЗАШЕЛ " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
                         controlMove = false;
                         sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                        System.out.println("ЗАШЕЛ И УБИЛ ДВОЙНОЙ КАРАБЛЬ WIN");
                         arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                        checkTwoShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         ccas.checkTwoShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         sound.stop();
                         sendControlWord(new EventObjectSendShot("WIN"));
                         sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
-//                        repaint();
                     }else if(tempArr[2].equals("three")){
-                        System.out.println("ЗАШЕЛ " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
                         controlMove = false;
                         sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                        System.out.println("ЗАШЕЛ И УБИЛ ТРОЙНОЙ КАРАБЛЬ WIN");
                         arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                        checkThreeShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         ccas.checkThreeShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         sound.stop();
                         sendControlWord(new EventObjectSendShot("WIN"));
                         sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
-//                        repaint();
                     }else if(tempArr[2].equals("four")){
-                        System.out.println("ЗАШЕЛ FOUR " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
                         controlMove = false;
                         sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                        System.out.println("ЗАШЕЛ И УБИЛ ЧЕТВЕРНОЙ КАРАБЛЬ WIN");
                         arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                        checkFourShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         ccas.checkFourShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[3]);
                         sound.stop();
                         sendControlWord(new EventObjectSendShot("WIN"));
                         sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
                     }else{
-                        System.out.println("ЗАШЕЛ " + tempArr[1]);
                         sound.stop();
                         arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                        checkAroundOneShip(arrayFieldTwo, tempMemberCorX, tempMemberCorY);
                         ccas.checkAroundOneShip(arrayFieldTwo, tempMemberCorX, tempMemberCorY);
-//                        repaint();
                         controlMove = false;
                         sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                        System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer ПОБЕДААААА!!!!");
                         sendControlWord(new EventObjectSendShot("WIN"));
                         sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
                     }
                 }
             }else if(tempArr[2].equals("true")){
-                System.out.println("ЗАШЕЛ " + tempArr[0] + tempArr[1] + tempArr[2]);
                 controlMove = true;
                 sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                System.out.println("перед установкой 1 answerFromServer.length() <= 5");
                 arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                checkAroundOneShip(arrayFieldTwo, tempMemberCorX,tempMemberCorY);
                 ccas.checkAroundOneShip(arrayFieldTwo, tempMemberCorX, tempMemberCorY);
                 repaint();
             }else {
                 if(tempArr[1].equals("two")){
-                    System.out.println("ЗАШЕЛ " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
                     controlMove = true;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                    System.out.println("ЗАШЕЛ И УБИЛ ДВОЙНОЙ КАРАБЛЬ");
                     arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                    checkTwoShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[2]);
                     ccas.checkTwoShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[2]);
                     repaint();
                 }else if(tempArr[1].equals("three")){
-                    System.out.println("ЗАШЕЛ " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
                     controlMove = true;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                    System.out.println("ЗАШЕЛ И УБИЛ ТРОЙНОЙ КАРАБЛЬ");
                     arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                    checkThreeShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[2]);
                     ccas.checkThreeShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[2]);
                     repaint();
                 }else if(tempArr[1].equals("four")){
-                    System.out.println("ЗАШЕЛ FOUR " + tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3]);
                     controlMove = true;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(1));
-                    System.out.println("ЗАШЕЛ И УБИЛ ЧЕТВЕРНОЙ КАРАБЛЬ");
                     arrayFieldTwo[tempMemberCorX][tempMemberCorY] = 1;
-//                    checkFourShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[2]);
                     ccas.checkFourShipSide(arrayFieldTwo,tempMemberCorX,tempMemberCorY,tempArr[2]);
                 }
             }
         }else if(tempArr[0].equals("he")){
-            System.out.println("Зашел в " + tempArr[0]);
             if(tempArr[3].equals("true")){
                 controlMove = true;
                 sendControlTimerInFirsPanel(new EventObjectSendShot(1));
                 copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[1])][Integer.parseInt(tempArr[2])] = 0;
                 repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ТРУ С ДАННЫМИ ОН НЕ ПОПАЛ");
             }else if(tempArr[3].equals("false")){
                 controlMove = false;
                 sendControlTimerInFirsPanel(new EventObjectSendShot(0));
                 copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[1])][Integer.parseInt(tempArr[2])] = 1;
                 repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ФАЛСЕ С ДАННЫМИ ОН ПОПАЛ");
             }else if(tempArr[3].equals("LOSE")){
                 if(tempArr[4].equals("two")){
-                    System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                    System.out.println("УБИЛИ ДВОЙНОЙ КОРАБЛЬ LOSE");
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[1])][Integer.parseInt(tempArr[2])] = 1;
-//                    checkTwoShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     ccas.checkTwoShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
                     sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
-//                    repaint();
                 }else if(tempArr[4].equals("three")){
-                    System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                    System.out.println("УБИЛИ ТРОЙНОЙ КОРАБЛЬ LOSE");
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[1])][Integer.parseInt(tempArr[2])] = 1;
-//                    checkThreeShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     ccas.checkThreeShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
                     sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
-//                    repaint();
                 }else if(tempArr[4].equals("four")){
-                    System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                    System.out.println("УБИЛИ ЧЕТВЕРНОЙ КОРАБЛЬ LOSE ");
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[1])][Integer.parseInt(tempArr[2])] = 1;
-//                    checkFourShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     ccas.checkFourShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]),tempArr[5]);
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
                     sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
-//                    repaint();
                 }else{
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[1])][Integer.parseInt(tempArr[2])] = 1;
-//                    checkAroundOneShip(copyArrayFieldForBreakMyShips, Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]));
                     ccas.checkAroundOneShip(copyArrayFieldForBreakMyShips, Integer.parseInt(tempArr[1]),Integer.parseInt(tempArr[2]));
-//                    repaint();
                     sound.stop();
                     sendControlWord(new EventObjectSendShot("LOSE"));
-                    System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ВЫ проиграли");
                     sendCordinatesShot(new EventObjectSendShot(new Object(),"bye"));
                 }
             }else if(tempArr[4].equals("false")){
-                System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + "ОН ПОПАЛ И УБИЛ");
                 controlMove = false;
                 sendControlTimerInFirsPanel(new EventObjectSendShot(0));
                 copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[2])][Integer.parseInt(tempArr[3])] = 1;
-//                checkAroundOneShip(copyArrayFieldForBreakMyShips, Integer.parseInt(tempArr[2]),Integer.parseInt(tempArr[3]));
                 ccas.checkAroundOneShip(copyArrayFieldForBreakMyShips, Integer.parseInt(tempArr[2]),Integer.parseInt(tempArr[3]));
                 repaint();
-                System.out.println(controlMove + "ЭТО В МЕТОДЕ setControlMoveAnswerFromServer  ЭТО ФАЛСЕ С ДАННЫМИ ОН ПОПАЛ");
             }else{
                 if(tempArr[1].equals("two")){
-                    System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                    System.out.println("УБИЛИ ДВОЙНОЙ КОРАБЛЬ");
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[3])][Integer.parseInt(tempArr[4])] = 1;
-//                    checkTwoShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[3]),Integer.parseInt(tempArr[4]),tempArr[2]);
                     ccas.checkTwoShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[3]),Integer.parseInt(tempArr[4]),tempArr[2]);
                     repaint();
                 }else if(tempArr[1].equals("three")){
-                    System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                    System.out.println("УБИЛИ ТРОЙНОЙ КОРАБЛЬ");
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[3])][Integer.parseInt(tempArr[4])] = 1;
-//                    checkThreeShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[3]),Integer.parseInt(tempArr[4]),tempArr[2]);
                     ccas.checkThreeShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[3]),Integer.parseInt(tempArr[4]),tempArr[2]);
                     repaint();
                 }else if(tempArr[1].equals("four")){
-                    System.out.println(tempArr[0] + tempArr[1] + tempArr[2] + tempArr[3] + tempArr[4] + tempArr[5] +"ОН ПОПАЛ И УБИЛ");
                     controlMove = false;
                     sendControlTimerInFirsPanel(new EventObjectSendShot(0));
-                    System.out.println("УБИЛИ ЧЕТВЕРНОЙ КОРАБЛЬ");
                     copyArrayFieldForBreakMyShips[Integer.parseInt(tempArr[3])][Integer.parseInt(tempArr[4])] = 1;
-//                    checkFourShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[3]),Integer.parseInt(tempArr[4]),tempArr[2]);
                     ccas.checkFourShipSide(copyArrayFieldForBreakMyShips,Integer.parseInt(tempArr[3]),Integer.parseInt(tempArr[4]),tempArr[2]);
                     repaint();
                 }
@@ -512,13 +433,6 @@ public class SecondGamePanel extends JPanel {
 
     public void setShip(int[][] ship){
         arrayField = ship;
-        System.out.println("ЭТО В СЕКОНДПАНЕЛГЕЙМ========");
-        for(int i = 0; i < arrayField.length;i++){
-            for(int j = 0; j < arrayField[i].length;j++) {
-                System.out.print(arrayField[i][j] + " + ");
-            }
-            System.out.println();
-        }
         repaint();
     }
 
@@ -532,12 +446,9 @@ public class SecondGamePanel extends JPanel {
         addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                //super.mouseClicked(e);
-                System.out.println("CLIKKKKKKKKKK");
                 if(controlMove) {
                     findCorCell(e.getX(), e.getY());
                     repaint();
-                    System.out.println("CLIKKKKKKKKKKEEEEEDDDDDDD" + controlMove);
                 }
             }
         });
@@ -548,17 +459,12 @@ public class SecondGamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                System.out.println("TIMER ____________in SECOND GAME PANEL");
                 if(startNumberTimer < endTimer){
                     startNumberTimer++;
-                    System.out.println("Таймер " + startNumberTimer);
                 }else{
                     timerStop();
                     flagControlTimer = false;
-                    System.out.println(flagControlTimer + "EEEEEEEEEEEEEEEEEEEEEE");
-                    System.out.println(controlMove + "EEEEEEEEEEEEEEEEEEEEEE");
                     repaint();
-                    System.out.println("Таймер СТОП" + flagControlTimer);
                     startNumberTimer = 0;
                     if(controlMove) {
                         sendControlTimerInFirsPanel(new EventObjectSendShot(1));

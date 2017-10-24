@@ -22,7 +22,6 @@ public class PanelButton extends JPanel implements ActionListener{
     private JButton go;
     private ArrayList<JButton> arrayList;
     private EventListenerList eventListenerList;
-//    private DinamicPanel dp;
     private ArrayQueue<JButton> arrayQueue;
 
     public PanelButton(int w, int h){
@@ -82,34 +81,29 @@ public class PanelButton extends JPanel implements ActionListener{
     }
 
     public void turnOffButton(int stateButton) {
-        System.out.println(" PRIXOD " + stateButton);
         if(stateButton == 1){
             arrayQueue.get(0).setEnabled(false);
             if(checkButton()) {
                 arrayQueue.get(4).setEnabled(false);
                 arrayQueue.get(6).setEnabled(true);
-//                fireMyEvent(new MyEventObject(false));
             }
         }else if(stateButton == 2) {
             arrayQueue.get(1).setEnabled(false);
             if(checkButton()) {
                 arrayQueue.get(4).setEnabled(false);
                 arrayQueue.get(6).setEnabled(true);
-//                fireMyEvent(new MyEventObject(false));
             }
         }else if(stateButton == 3) {
             arrayQueue.get(2).setEnabled(false);
             if(checkButton()) {
                 arrayQueue.get(4).setEnabled(false);
                 arrayQueue.get(6).setEnabled(true);
-//                fireMyEvent(new MyEventObject(false));
             }
         }else if(stateButton == 4) {
             arrayQueue.get(3).setEnabled(false);
             if(checkButton()) {
                 arrayQueue.get(4).setEnabled(false);
                 arrayQueue.get(6).setEnabled(true);
-//                fireMyEvent(new MyEventObject(false));
             }
         }
     }

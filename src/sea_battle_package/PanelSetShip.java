@@ -61,7 +61,6 @@ public class PanelSetShip extends JPanel {
         drawSinglWeb(g, recWidth, recHeight, top, left);
         drawMouseCell(g);
         if(!sound.isPlaying()){
-            System.out.println("TUT");
             sound.play();
         }
     }
@@ -160,7 +159,6 @@ public class PanelSetShip extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //super.mouseClicked(e);
                 if(mainFlag) {
                     if (flagColor) {
                     setCor(left, width - right, width - left - right, e.getX(), e.getY());
@@ -202,7 +200,6 @@ public class PanelSetShip extends JPanel {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                //super.mouseMoved(e);
                 if(mainFlag) {
                 if (flag) {
                     mouseX = e.getX();
@@ -318,10 +315,10 @@ public class PanelSetShip extends JPanel {
 
     private void clearArrayField() {
         arrayField = new int[10][10];
-        OverwriteVariables();
+        OverWriteVariables();
         repaint();
     }
-    private void OverwriteVariables(){
+    private void OverWriteVariables(){
         stateShip = 1;
         one = 0;
         two = 0;
@@ -368,12 +365,11 @@ public class PanelSetShip extends JPanel {
                     } else {
                         if(stateShip == 1) {
                             flag = checkOneShipHOrV(indexX, indexY);
-                        }
-                        else if(stateShip == 2) {
+                        }else if(stateShip == 2) {
                             flag = checkTwoShipH(indexX, indexY);
                         }else if(stateShip == 3) {
                             flag = checkThreeShipH(indexX, indexY);
-                        } else if(stateShip == 4) {
+                        }else if(stateShip == 4) {
                             flag = checkFourShipH(indexX, indexY);
                         }
                     }

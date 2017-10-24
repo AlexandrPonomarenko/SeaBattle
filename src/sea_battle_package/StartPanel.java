@@ -38,7 +38,6 @@ public class StartPanel extends JPanel {
                 realWidth / 100 * (30 - 2) + 10, realHeight / 100 * (20 - 2));
         drawStringStart(g);
         if(!sound.isPlaying()){
-            System.out.println("TUT");
             sound.play();
         }
     }
@@ -77,8 +76,6 @@ public class StartPanel extends JPanel {
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-//                super.mouseMoved(e);
-//                System.out.println("MAUSE" + e.getX()+ " ---  " + e.getY());
                 if(checkArea(e.getX(),e.getY())){
                     flagColor = true;
                     repaint();
@@ -94,7 +91,6 @@ public class StartPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
                 if(checkArea(e.getX(), e.getY())){
                     sound.stop();
                     fireLoad(new LoadEventListenerPanel(e));
